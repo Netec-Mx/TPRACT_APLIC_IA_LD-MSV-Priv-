@@ -1,4 +1,6 @@
-<img src="images/neteclogo.png" alt="logo" width="300"/>
+<a href="https://netec.com">
+  <img src="https://static.wixstatic.com/media/96edd2_934dddb3230b4b16b1d1c56c51143738~mv2.png" alt="Logo de Netec" width="300"/>
+</a>
 
 # Taller práctico: Aplicación de la Inteligencia Artificial Moderna
 
@@ -22,17 +24,6 @@ Taller práctico enfocado en la aplicación de conceptos de inteligencia artific
 6. Evaluar la calidad, sesgos y limitaciones de los resultados generados por IA.
 7. Integrar el uso de IA en flujos de trabajo para apoyar el análisis y la toma de decisiones.
 
-## Perfil de audiencia
-
-Profesionales y usuarios de áreas operativas, administrativas y técnicas que desean aplicar herramientas de inteligencia artificial en su trabajo, sin necesidad de experiencia previa en programación.
-
-## Prerrequisitos
-
-- Uso cotidiano de navegador web, correo electrónico y hojas de cálculo.
-- Cuentas activas en las herramientas indicadas en la [Guía de configuración](Setup_Guide.md), en especial la cuenta de IBM Cloud con el plan Lite habilitado previamente.
-- No se requieren conocimientos de programación.
-
-> El temario no define perfil de audiencia ni prerrequisitos; los anteriores se derivan de la descripción, los objetivos, las herramientas y los requerimientos del taller.
 
 ## Lista de laboratorios
 
@@ -73,48 +64,7 @@ Cada uno de estos laboratorios está diseñado para ofrecerte una experiencia pr
   - **Descripción**: creación de un proyecto en IBM watsonx.ai Studio, carga de datos de incidencias y exploración sin programar.
   - ⏱️ **Duración estimada**: 15 min.
 
-### Distribución del tiempo
 
-| Práctica | Herramienta | Duración |
-|---|---|---|
-| 1. Selección de tipo de IA | ChatGPT o Copilot | 15 min |
-| 2. Ingeniería de prompts aplicada | ChatGPT o Copilot | 15 min |
-| 3. Visión artificial con IA multimodal | ChatGPT o Copilot y Google Vision AI | 20 min |
-| 4. Aprendizaje automático interactivo | Teachable Machine | 20 min |
-| 5. Simulación de aprendizaje profundo | TensorFlow Playground | 20 min |
-| 6. OpenVINO Toolkit | OpenVINO Notebooks en Google Colab | 15 min |
-| 7. IBM Watson Studio | IBM watsonx.ai Studio | 15 min |
-| **Total** | | **120 min** |
-
-## Instrucciones generales del laboratorio
-
-1. Antes del taller, preparar el equipo y las cuentas con la [Guía de configuración](Setup_Guide.md). La cuenta de IBM Cloud debe estar lista antes de la sesión.
-2. Cada práctica está en su carpeta `CapituloNN` con su `README.md` y la carpeta `recursos`. Para descargar un archivo, abrirlo y seleccionar **Download raw file**.
-3. Guardar los entregables en `Documentos\Taller_IA_Moderna\PracticaNN\` con las iniciales del participante en el nombre.
-4. Todos los datos de las prácticas son ficticios. No cargar información confidencial ni fotografías de personas en las herramientas de IA.
-5. Las prácticas son progresivas: van del uso de IA generativa (1 a 3) al funcionamiento del aprendizaje automático y profundo (4 y 5) y a las plataformas para ejecutar y gestionar modelos (6 y 7).
-
-## Estructura del repositorio
-
-```text
-.
-├── README.md            Página principal (este archivo)
-├── Setup_Guide.md       Guía de configuración del entorno
-├── images/              Logotipo y diagramas de las prácticas
-├── Capitulo01/          Práctica 1: README.md y recursos/
-├── Capitulo02/          Práctica 2
-├── Capitulo03/          Práctica 3
-├── Capitulo04/          Práctica 4
-├── Capitulo05/          Práctica 5
-├── Capitulo06/          Práctica 6
-└── Capitulo07/          Práctica 7
-```
-
-## Recursos adicionales
-
-- [Google: Machine Learning Glossary](https://developers.google.com/machine-learning/glossary)
-- [OpenAI: Prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering)
-- [Google Cloud Vision: documentación](https://cloud.google.com/vision/docs)
 
 ## Enlaces de referencia
 
