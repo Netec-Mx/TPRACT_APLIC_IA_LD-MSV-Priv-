@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="230" viewBox="0 0 760 230" font-family="Segoe UI, Arial, sans-serif">
+<rect width="760" height="230" fill="#ffffff"/>
+<text x="20" y="34" font-size="18" font-weight="700" fill="#0b2e59">Práctica 7. IBM watsonx.ai Studio</text>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b6b7f"/></marker></defs>
+<rect x="20.0" y="70" width="132.8" height="110" rx="10" fill="#e8f0fb" stroke="#1f4e78" stroke-width="1.5"/>
+<text x="30.0" y="92" font-size="12" font-weight="700" fill="#1f4e78">Tarea 1</text>
+<text x="30.0" y="112" font-size="12" fill="#0b2e59">Crear proyecto</text>
+<text x="30.0" y="172" font-size="12" font-weight="700" fill="#5b6b7f">5 min</text>
+<line x1="153.8" y1="125" x2="164.8" y2="125" stroke="#5b6b7f" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="166.8" y="70" width="132.8" height="110" rx="10" fill="#e8f0fb" stroke="#1f4e78" stroke-width="1.5"/>
+<text x="176.8" y="92" font-size="12" font-weight="700" fill="#1f4e78">Tarea 2</text>
+<text x="176.8" y="112" font-size="12" fill="#0b2e59">Agregar datos</text>
+<text x="176.8" y="172" font-size="12" font-weight="700" fill="#5b6b7f">4 min</text>
+<line x1="300.6" y1="125" x2="311.6" y2="125" stroke="#5b6b7f" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="313.6" y="70" width="132.8" height="110" rx="10" fill="#e8f0fb" stroke="#1f4e78" stroke-width="1.5"/>
+<text x="323.6" y="92" font-size="12" font-weight="700" fill="#1f4e78">Tarea 3</text>
+<text x="323.6" y="112" font-size="12" fill="#0b2e59">Explorar datos</text>
+<text x="323.6" y="172" font-size="12" font-weight="700" fill="#5b6b7f">4 min</text>
+<line x1="447.4" y1="125" x2="458.4" y2="125" stroke="#5b6b7f" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="460.4" y="70" width="132.8" height="110" rx="10" fill="#e8f0fb" stroke="#1f4e78" stroke-width="1.5"/>
+<text x="470.4" y="92" font-size="12" font-weight="700" fill="#1f4e78">Tarea 4</text>
+<text x="470.4" y="112" font-size="12" fill="#0b2e59">Conclusión</text>
+<text x="470.4" y="172" font-size="12" font-weight="700" fill="#5b6b7f">2 min</text>
+<line x1="594.2" y1="125" x2="605.2" y2="125" stroke="#5b6b7f" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="607.2" y="70" width="132.8" height="110" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="617.2" y="92" font-size="12" font-weight="700" fill="#2e7d32">Entregable</text>
+<text x="617.2" y="112" font-size="12" fill="#1b5e20">Registro del</text>
+<text x="617.2" y="127" font-size="12" fill="#1b5e20">proyecto</text>
+<text x="20" y="215" font-size="12" fill="#5b6b7f">Duración total: 15 min</text>
+</svg>

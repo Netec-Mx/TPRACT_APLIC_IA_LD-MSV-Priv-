@@ -1,0 +1,121 @@
+﻿ID,Fecha,Area,Tipo,Prioridad,Horas_para_resolver,Costo_MXN,Estado
+INC-0001,2026-10-02,Calidad,Retraso de proveedor,Media,0.8,718,Cerrada
+INC-0002,2026-09-02,Embarques,Error de captura,Alta,3.6,2145,Cerrada
+INC-0003,2026-09-02,Embarques,Falla de equipo,Media,8.7,3593,Cerrada
+INC-0004,2026-10-10,Almacén,Falla de equipo,Baja,4.6,2286,Cerrada
+INC-0005,2026-10-23,Embarques,Accidente menor,Alta,4.8,2601,Cerrada
+INC-0006,2026-09-15,Ensamble,Falta de material,Media,3.2,2860,Cerrada
+INC-0007,2026-08-03,Embarques,Retraso de proveedor,Media,1.9,1014,Cerrada
+INC-0008,2026-08-04,Embarques,Error de captura,Media,2.4,1941,Cerrada
+INC-0009,2026-10-03,Embarques,Falta de material,Baja,1.3,1105,Cerrada
+INC-0010,2026-10-26,Embarques,Falta de material,Baja,2.2,1557,Cerrada
+INC-0011,2026-10-10,Mantenimiento,Falla de equipo,Alta,5.7,2371,Cerrada
+INC-0012,2026-09-01,Embarques,Retraso de proveedor,Baja,2.1,1564,Abierta
+INC-0013,2026-08-24,Mantenimiento,Falla de equipo,Media,7.1,4068,Cerrada
+INC-0014,2026-10-09,Almacén,Error de captura,Baja,3.2,1664,Cerrada
+INC-0015,2026-10-13,Almacén,Accidente menor,Baja,2.0,1550,Abierta
+INC-0016,2026-10-06,Almacén,Error de captura,Alta,2.3,1352,Cerrada
+INC-0017,2026-10-28,Calidad,Error de captura,Alta,4.5,3042,Abierta
+INC-0018,2026-10-26,Embarques,Retraso de proveedor,Media,4.6,3758,Abierta
+INC-0019,2026-08-07,Embarques,Falta de material,Media,1.1,836,Cerrada
+INC-0020,2026-10-04,Mantenimiento,Falla de equipo,Media,1.7,595,Cerrada
+INC-0021,2026-09-12,Calidad,Falta de material,Alta,2.1,1543,Cerrada
+INC-0022,2026-09-03,Embarques,Falta de material,Alta,6.7,5540,Cerrada
+INC-0023,2026-08-17,Almacén,Falla de equipo,Media,4.3,2214,Cerrada
+INC-0024,2026-10-28,Calidad,Falla de equipo,Media,1.4,1246,Cerrada
+INC-0025,2026-08-18,Ensamble,Accidente menor,Media,2.5,1302,Cerrada
+INC-0026,2026-09-24,Embarques,Accidente menor,Media,1.7,933,Abierta
+INC-0027,2026-09-09,Almacén,Error de captura,Media,4.5,1701,Cerrada
+INC-0028,2026-09-03,Almacén,Falta de material,Baja,3.0,2121,Abierta
+INC-0029,2026-10-27,Almacén,Falla de equipo,Media,5.2,4388,Cerrada
+INC-0030,2026-08-13,Ensamble,Falta de material,Media,4.9,2136,Abierta
+INC-0031,2026-10-13,Almacén,Falta de material,Alta,6.3,4347,Cerrada
+INC-0032,2026-08-05,Mantenimiento,Error de captura,Baja,4.5,2358,Abierta
+INC-0033,2026-09-05,Embarques,Retraso de proveedor,Baja,1.3,1085,Cerrada
+INC-0034,2026-08-14,Embarques,Falta de material,Alta,6.4,2912,Cerrada
+INC-0035,2026-10-11,Almacén,Accidente menor,Media,1.9,1233,Cerrada
+INC-0036,2026-10-19,Calidad,Falta de material,Baja,0.8,569,Abierta
+INC-0037,2026-10-01,Embarques,Falta de material,Baja,3.3,2950,Cerrada
+INC-0038,2026-09-20,Mantenimiento,Accidente menor,Media,4.8,2414,Cerrada
+INC-0039,2026-08-18,Ensamble,Falta de material,Media,3.4,2869,Cerrada
+INC-0040,2026-08-25,Ensamble,Error de captura,Media,4.7,4084,Cerrada
+INC-0041,2026-09-15,Ensamble,Falta de material,Media,3.3,2884,Cerrada
+INC-0042,2026-09-18,Embarques,Falta de material,Media,5.7,5044,Abierta
+INC-0043,2026-10-08,Almacén,Accidente menor,Alta,1.5,1203,Cerrada
+INC-0044,2026-10-22,Mantenimiento,Falla de equipo,Media,10.6,5384,Abierta
+INC-0045,2026-08-13,Calidad,Falla de equipo,Baja,12.8,7347,Cerrada
+INC-0046,2026-09-11,Mantenimiento,Falla de equipo,Media,3.8,3005,Abierta
+INC-0047,2026-09-15,Mantenimiento,Falla de equipo,Media,9.8,3616,Cerrada
+INC-0048,2026-08-04,Ensamble,Falta de material,Media,2.1,871,Cerrada
+INC-0049,2026-09-28,Ensamble,Error de captura,Alta,6.2,3881,Cerrada
+INC-0050,2026-08-09,Calidad,Falta de material,Media,3.3,2824,Cerrada
+INC-0051,2026-10-03,Ensamble,Accidente menor,Alta,7.1,4437,Abierta
+INC-0052,2026-09-18,Calidad,Falla de equipo,Baja,1.9,900,Cerrada
+INC-0053,2026-08-06,Mantenimiento,Retraso de proveedor,Media,1.2,1066,Cerrada
+INC-0054,2026-08-10,Calidad,Falla de equipo,Media,4.9,3243,Cerrada
+INC-0055,2026-08-01,Mantenimiento,Falta de material,Alta,3.1,1140,Abierta
+INC-0056,2026-09-04,Ensamble,Accidente menor,Media,1.5,1254,Cerrada
+INC-0057,2026-08-08,Mantenimiento,Falta de material,Media,5.4,4687,Cerrada
+INC-0058,2026-09-02,Calidad,Error de captura,Baja,4.5,2218,Cerrada
+INC-0059,2026-08-22,Almacén,Falla de equipo,Media,11.7,9254,Cerrada
+INC-0060,2026-08-15,Mantenimiento,Accidente menor,Media,2.1,1255,Cerrada
+INC-0061,2026-10-11,Almacén,Error de captura,Media,1.9,1303,Abierta
+INC-0062,2026-09-03,Almacén,Falla de equipo,Baja,3.7,1986,Cerrada
+INC-0063,2026-08-05,Mantenimiento,Falla de equipo,Media,4.1,1455,Cerrada
+INC-0064,2026-10-28,Mantenimiento,Falta de material,Media,2.1,1234,Cerrada
+INC-0065,2026-10-16,Almacén,Falta de material,Baja,5.3,3964,Cerrada
+INC-0066,2026-10-23,Almacén,Error de captura,Media,1.3,1137,Cerrada
+INC-0067,2026-10-26,Embarques,Falla de equipo,Media,7.2,2635,Abierta
+INC-0068,2026-09-18,Almacén,Falla de equipo,Alta,11.5,5255,Cerrada
+INC-0069,2026-09-26,Ensamble,Falta de material,Media,4.2,3574,Cerrada
+INC-0070,2026-10-16,Ensamble,Accidente menor,Media,3.4,3019,Cerrada
+INC-0071,2026-10-15,Calidad,Accidente menor,Baja,1.8,1008,Cerrada
+INC-0072,2026-10-21,Mantenimiento,Accidente menor,Alta,7.2,4636,Cerrada
+INC-0073,2026-08-01,Almacén,Falla de equipo,Alta,5.4,3569,Cerrada
+INC-0074,2026-09-23,Mantenimiento,Falla de equipo,Media,9.2,5262,Cerrada
+INC-0075,2026-08-16,Embarques,Error de captura,Media,4.7,2603,Cerrada
+INC-0076,2026-09-07,Ensamble,Error de captura,Alta,4.3,3483,Abierta
+INC-0077,2026-08-20,Almacén,Falla de equipo,Alta,13.2,8157,Abierta
+INC-0078,2026-09-13,Embarques,Error de captura,Alta,3.3,2834,Abierta
+INC-0079,2026-08-14,Ensamble,Falla de equipo,Baja,9.3,7114,Cerrada
+INC-0080,2026-09-04,Calidad,Falta de material,Alta,3.0,2046,Cerrada
+INC-0081,2026-09-28,Almacén,Falta de material,Baja,2.1,1535,Cerrada
+INC-0082,2026-08-27,Embarques,Falla de equipo,Baja,10.2,4069,Cerrada
+INC-0083,2026-08-25,Calidad,Falta de material,Alta,7.6,6049,Cerrada
+INC-0084,2026-10-18,Calidad,Accidente menor,Media,0.7,531,Abierta
+INC-0085,2026-08-21,Almacén,Accidente menor,Alta,5.9,4784,Cerrada
+INC-0086,2026-09-10,Calidad,Falta de material,Baja,3.5,1834,Cerrada
+INC-0087,2026-09-16,Calidad,Error de captura,Baja,4.1,3136,Cerrada
+INC-0088,2026-09-18,Embarques,Accidente menor,Alta,5.2,2215,Cerrada
+INC-0089,2026-08-08,Almacén,Falta de material,Media,4.7,3698,Cerrada
+INC-0090,2026-10-07,Ensamble,Error de captura,Media,2.3,1672,Cerrada
+INC-0091,2026-09-11,Ensamble,Accidente menor,Media,2.8,2480,Cerrada
+INC-0092,2026-08-03,Ensamble,Falta de material,Media,2.5,2162,Cerrada
+INC-0093,2026-08-05,Calidad,Retraso de proveedor,Media,4.1,3247,Abierta
+INC-0094,2026-09-27,Ensamble,Falta de material,Baja,4.9,4169,Cerrada
+INC-0095,2026-08-17,Embarques,Retraso de proveedor,Baja,1.9,875,Cerrada
+INC-0096,2026-08-01,Ensamble,Retraso de proveedor,Baja,4.1,3353,Cerrada
+INC-0097,2026-10-09,Almacén,Error de captura,Baja,4.1,2710,Abierta
+INC-0098,2026-10-07,Embarques,Falta de material,Media,1.1,464,Cerrada
+INC-0099,2026-09-09,Mantenimiento,Falla de equipo,Baja,1.1,990,Cerrada
+INC-0100,2026-08-14,Calidad,Falta de material,Baja,3.1,1829,Cerrada
+INC-0101,2026-08-22,Calidad,Falla de equipo,Alta,15.3,11934,Cerrada
+INC-0102,2026-09-22,Mantenimiento,Retraso de proveedor,Media,0.7,487,Cerrada
+INC-0103,2026-09-07,Mantenimiento,Falla de equipo,Baja,10.0,8660,Cerrada
+INC-0104,2026-09-04,Calidad,Accidente menor,Alta,4.0,2484,Cerrada
+INC-0105,2026-08-20,Embarques,Falta de material,Alta,2.2,1709,Abierta
+INC-0106,2026-10-02,Almacén,Retraso de proveedor,Alta,0.8,396,Cerrada
+INC-0107,2026-08-11,Almacén,Error de captura,Baja,5.4,2511,Abierta
+INC-0108,2026-10-13,Almacén,Error de captura,Baja,4.6,1757,Cerrada
+INC-0109,2026-09-14,Calidad,Retraso de proveedor,Media,1.1,473,Cerrada
+INC-0110,2026-09-03,Ensamble,Falta de material,Baja,2.6,1731,Abierta
+INC-0111,2026-09-24,Ensamble,Accidente menor,Alta,4.5,3631,Cerrada
+INC-0112,2026-08-15,Mantenimiento,Falla de equipo,Media,10.9,8327,Cerrada
+INC-0113,2026-09-12,Ensamble,Accidente menor,Alta,2.0,828,Abierta
+INC-0114,2026-09-01,Calidad,Falta de material,Baja,0.7,471,Abierta
+INC-0115,2026-08-16,Embarques,Retraso de proveedor,Media,5.7,2131,Abierta
+INC-0116,2026-08-16,Mantenimiento,Retraso de proveedor,Media,1.9,1501,Abierta
+INC-0117,2026-09-28,Almacén,Falla de equipo,Baja,4.8,2419,Cerrada
+INC-0118,2026-08-08,Calidad,Falta de material,Baja,3.8,3321,Cerrada
+INC-0119,2026-09-04,Mantenimiento,Falla de equipo,Alta,10.1,6898,Cerrada
+INC-0120,2026-09-06,Ensamble,Error de captura,Alta,1.3,1118,Abierta
