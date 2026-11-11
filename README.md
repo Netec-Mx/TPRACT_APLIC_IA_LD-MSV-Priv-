@@ -12,7 +12,6 @@ Te damos la bienvenida a la **plataforma de laboratorios** del curso **Taller pr
 
 Taller práctico enfocado en la aplicación de conceptos de inteligencia artificial moderna, donde los participantes interactúan con distintos tipos de modelos (procesamiento de lenguaje natural, visión artificial y aprendizaje automático) para generar contenido, analizar información, traducir, evaluar resultados y comprender sus capacidades, limitaciones y uso en escenarios reales.
 
-**Duración:** 2 horas (120 minutos), 100% práctica.
 
 ## Objetivos del taller
 
