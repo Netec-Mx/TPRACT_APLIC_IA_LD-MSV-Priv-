@@ -30,7 +30,7 @@ Cada uno de estos laboratorios está diseñado para ofrecerte una experiencia pr
 
 ### [Práctica 1. Selección de tipo de IA según el problema](Capitulo01/README.md)
 
-  - **Descripción**: clasificación de 8 escenarios de negocio en NLP, visión artificial o ML predictivo y contraste con ChatGPT o Copilot.
+  - **Descripción**: clasificación de escenarios de negocio en NLP, visión artificial o ML predictivo y contraste con ChatGPT o Copilot.
   - ⏱️ **Duración estimada**: 15 min.
 
 ### [Práctica 2. Ingeniería de prompts aplicada](Capitulo02/README.md)
