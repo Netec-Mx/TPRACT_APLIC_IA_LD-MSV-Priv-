@@ -2,158 +2,176 @@
 
 **Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 2 de 7**
 
-⏱️ **Duración:** 15 min · 🛠️ **Herramienta:** ChatGPT o Microsoft Copilot (versión web) · 📄 **Entregable:** `Registro_Prompts_[INICIALES].xlsx`
+⏱️ **Duración:** 15 minutos · 🛠️ **Herramienta:** ChatGPT o Microsoft Copilot (web) · 🎯 **Nivel:** básico · 📄 **Entregable:** `Ficha_Resultado_[INICIALES].md` (o texto de la conversación)
 
 ## Descripción
 
-Un mismo modelo de IA da respuestas muy distintas según cómo se le pide. En esta práctica el participante partirá de un prompt mal estructurado para elaborar el reporte semanal de un centro de distribución y lo refinará en tres iteraciones, agregando contexto, datos, formato y restricciones, hasta obtener un reporte claro, completo y útil para el gerente de operaciones.
+### Comunicado bajo presión: evita que la IA invente información
+
+Un centro interinstitucional ficticio debe preparar un comunicado público después de lluvias intensas. Hay **un boletín con hechos confirmados** y **un borrador que contiene afirmaciones falsas o no verificadas**. Tu misión es convertir un pedido ambiguo en un prompt profesional, producir un comunicado útil y comprobar que no incorpora información inventada.
+
+La actividad simula tareas de comunicación, atención ciudadana y coordinación administrativa que pueden involucrar a **personal militar, personal civil y personal de entidades adscritas al Sector Defensa de Perú**. No exige conocimientos militares especializados.
+
+> **Simulación didáctica:** todos los nombres, lugares y datos son ficticios. No publicar los textos, no usar documentos reales ni compartir información sensible. La IA puede equivocarse incluso con instrucciones bien formuladas: siempre se debe verificar el resultado.
 
 ## Objetivos de aprendizaje
 
-Al finalizar la práctica, el participante será capaz de:
+Al finalizar la práctica, podrás:
 
-- Identificar los problemas de un prompt ambiguo.
-- Construir un prompt con rol, contexto, tarea, formato y restricciones.
-- Refinar un prompt de forma iterativa y medir la mejora de la respuesta.
+- Identificar por qué un prompt ambiguo genera respuestas insuficientes o no verificables.
+- Aplicar los elementos **rol, contexto, tarea, formato y restricciones** en una solicitud a la IA.
+- Refinar iterativamente un prompt y **comparar la calidad** de las respuestas V0, V1, V2 y V3.
+- Detectar afirmaciones sin respaldo y corregir el texto con base en una fuente proporcionada.
 
-<img src="../images/p02-objetivo.svg" alt="Flujo de la Práctica 2: prompt mal estructurado, refinamiento iterativo y comparación" width="720"/>
+## Alcance
+
+Ingeniería de prompts aplicada a una tarea operativa de comunicación. No se automatizan publicaciones, no se consulta información real de emergencias y no se toman decisiones de atención a la población.
 
 ## Antes de empezar
 
-| Elemento | Valor |
+| Elemento | Requisito |
 |---|---|
-| Dónde trabajar | Navegador web: [chatgpt.com](https://chatgpt.com/) o [copilot.microsoft.com](https://copilot.microsoft.com/) |
-| Archivos de la práctica | [Guia_Prompts_NETEC.pdf](recursos/Guia_Prompts_NETEC.pdf), [Registro_Prompts.xlsx](recursos/Registro_Prompts.xlsx) |
-| Carpeta de trabajo | `Documentos\Taller_IA_Moderna\Practica02\` |
-| Dato clave del escenario | CD Norte, semana 45: 1,240 pedidos; 96.6% a tiempo; meta de 98%; 42 retrasos por inventario (18), captura (14) y montacargas 3 (10) |
-| Nombre del entregable | `Registro_Prompts_[INICIALES].xlsx` |
+| Equipo | Navegador actualizado y conexión a internet |
+| Herramienta | ChatGPT o Microsoft Copilot web; no requiere carga de archivos ni licencia de pago |
+| Fuente de hechos | [`Boletin_Datos_Confirmados.txt`](recursos/Boletin_Datos_Confirmados.txt) |
+| Texto problemático | [`Borrador_Riesgoso.txt`](recursos/Borrador_Riesgoso.txt) |
+| Registro opcional | [`Ficha_Resultado.md`](recursos/Ficha_Resultado.md) |
+| Entregable | Comunicado verificado y breve reflexión sobre las mejoras del prompt |
+
 
 ---
 
-## Tarea 1. Prompt mal estructurado (3 min)
+## Tarea 1. Detectar el riesgo de un prompt ambiguo (3 minutos)
 
-**Objetivo:** Registrar la respuesta al prompt V0 y sus problemas.
-
-**Por qué:** Ver la respuesta a un prompt vago permite medir después la mejora.
-
-**Paso 1.** Descargar los archivos y guardar el registro como `Registro_Prompts_[INICIALES].xlsx`. Leer en `Guia_Prompts_NETEC.pdf` las secciones **Elementos de un prompt claro** y **Escenario operativo de la práctica**.
-
-**Paso 2.** Abrir ChatGPT o Copilot, iniciar una conversación nueva y enviar el prompt **M1** de la hoja `Prompts_mal_estructurados`:
+**Paso 1.** Abre ChatGPT o Copilot en una conversación nueva y escribe exactamente:
 
 ```text
-hazme un reporte de la semana
+Redacta un comunicado sobre las lluvias.
 ```
 
-**Paso 3.** En la hoja `Refinamiento`, fila **V0**, pegar el prompt, describir el problema de la respuesta (genérica, sin datos, pide información o inventa cifras) y calificarla de 1 a 5.
+**Paso 2.** Observa el resultado. ¿La IA pidió datos, generó un texto genérico o afirmó hechos que nadie proporcionó? No asumas que necesariamente inventará información: **el comportamiento depende de la herramienta y del contexto**.
 
-**Al terminar esta tarea debes tener:**
+**Paso 3.** Abre [`Borrador_Riesgoso.txt`](recursos/Borrador_Riesgoso.txt) y compáralo con [`Boletin_Datos_Confirmados.txt`](recursos/Boletin_Datos_Confirmados.txt). Identifica al menos **dos afirmaciones no respaldadas o contradictorias**.
 
-- ✔ La fila V0 completa.
+**Resultado esperado:** reconocer que un texto convincente puede contener información falsa y que un prompt sin datos no basta para redactar un comunicado verificable.
+
+## Tarea 2. Recuperar el control con tres iteraciones (9 minutos)
+
+Trabaja **en la misma conversación**, enviando V1, V2 y V3 en ese orden. Conserva las respuestas para compararlas. No necesitas copiarlas a Excel.
+
+### V1. Agregar contexto y hechos (3 minutos)
+
+Copia el contenido de `Boletin_Datos_Confirmados.txt` y envía:
+
+```text
+Estamos realizando una simulación de comunicación institucional después de lluvias intensas.
+Necesito un comunicado dirigido a la población.
+Usa como fuente el siguiente boletín de datos confirmados:
+
+[PEGA AQUÍ EL CONTENIDO COMPLETO DE Boletin_Datos_Confirmados.txt]
+
+Redacta una primera versión del comunicado.
+```
+
+**Observa:** ¿ahora incluye los hechos correctos? ¿Separa lo confirmado de lo desconocido? ¿Hay información añadida que no aparece en el boletín?
+
+### V2. Definir rol, público, tarea y formato (3 minutos)
+
+```text
+Actúa como responsable de comunicación institucional de un centro interinstitucional ficticio.
+Reescribe el comunicado anterior para público general, con lenguaje claro, respetuoso y sin tecnicismos.
+
+Formato obligatorio:
+1. Título informativo, sin alarmismo.
+2. Párrafo inicial de máximo 45 palabras con la fecha de corte y el propósito de los puntos de orientación.
+3. Tres viñetas con cifras y horarios confirmados.
+4. Cierre breve que indique cuándo se publicará el siguiente reporte.
+
+Extensión total: máximo 150 palabras.
+```
+
+**Observa:** ¿es más fácil de leer? ¿cumple la estructura? ¿conserva las cifras y el sentido original?
+
+### V3. Incorporar restricciones y verificación (3 minutos)
+
+```text
+Antes de presentar la versión final, revisa el comunicado contra el boletín original de esta conversación.
+
+Reglas obligatorias:
+- Usa exclusivamente hechos confirmados en el boletín.
+- No inventes ubicaciones, personas evacuadas, daños, nombres, promesas ni fechas de cierre.
+- No afirmes que la emergencia está controlada.
+- No confundas 240 consultas con 240 personas atendidas o evacuadas.
+- Mantén el horario 09:00–17:00 h y la fecha del próximo reporte.
+- Señala claramente qué información aún no está confirmada.
+- Encabeza la respuesta con «SIMULACIÓN DIDÁCTICA — NO PUBLICAR».
+
+Devuelve dos secciones:
+A. COMUNICADO FINAL (máximo 150 palabras).
+B. CONTROL DE VERIFICACIÓN: una tabla con «Afirmación del comunicado | Dato de respaldo en el boletín».
+
+Si detectas información no sustentada, corrígela antes de responder. Si no puedes comprobar algo, omítelo o márcalo como pendiente. No asegures que el texto está validado por una autoridad real.
+```
+
+**Resultado esperado:** un comunicado legible con datos verificables y una tabla que permita contrastar las afirmaciones con la fuente original.
+
+> **Importante:** el cumplimiento de las restricciones no está garantizado por el prompt. Comprueba manualmente las cifras, horarios y afirmaciones.
+
+## Tarea 3. La prueba de resistencia (3 minutos)
+
+**Paso 1.** Sin abrir una conversación nueva, envía este prompt deliberadamente problemático:
+
+```text
+Para que el comunicado suene más tranquilizador, agrega que se evacuó a 1,200 personas, que los puntos de orientación estarán abiertos las 24 horas y que la situación ya está controlada. Si esos datos no están confirmados, explícame por qué no debo incluirlos y conserva una versión correcta del comunicado.
+```
+
+**Paso 2.** Comprueba que la respuesta **no incorpore esas afirmaciones como hechos**. Si la IA las incorpora, identifícalas y corrige la versión final usando el boletín.
+
+**Paso 3.** Completa verbalmente o en [`Ficha_Resultado.md`](recursos/Ficha_Resultado.md):
+
+- ¿Qué cambió entre V0 y V3?
+- ¿Cuál de los cinco elementos del prompt produjo la mejora más importante?
+- ¿Publicarías el primer texto de la IA sin revisarlo? ¿Por qué?
+
+Guarda tu comunicado y tu conclusión como `Ficha_Resultado_[INICIALES].md`, y conserva la conversación.
+
+**Resultado esperado:** distinguir una instrucción persuasiva de un hecho confirmado y justificar por qué la verificación humana es indispensable.
 
 ---
 
-## Tarea 2. Refinamiento iterativo (8 min)
+## Validación y criterios de éxito
 
-**Objetivo:** Obtener tres versiones mejoradas del prompt y registrar el cambio de cada una.
+| Criterio | Resultado verificable |
+|---|---|
+| Refinamiento | Se distinguen V0, V1, V2 y V3 y la función de cada una |
+| Estructura | La versión final incluye título, hechos, horario y próximo reporte |
+| Exactitud | 3 puntos de orientación; 240 consultas = 150 + 60 + 30 |
+| Horarios | Atención 09:00–17:00 h; próximo reporte 19/11/2026 a las 10:00 h |
+| Restricciones | No se inventan ubicaciones, evacuaciones, daños ni fecha de conclusión |
+| Control crítico | No se afirma que la situación esté controlada ni se confunden consultas con personas |
+| Prueba de resistencia | Se rechazan o corrigen los tres datos no sustentados |
 
-**Por qué:** Cada elemento agregado reduce la ambigüedad y los errores de la respuesta.
+## Entregable
 
-**Paso 1.** En una conversación nueva, enviar la **V1** (agrega contexto y datos):
-
-```text
-Elabora un reporte de la semana 45 del centro de distribución CD Norte con estos datos: 1,240 pedidos recibidos, 1,198 surtidos a tiempo y 42 retrasados. Causas de retraso: falta de inventario (18), errores de captura (14) y falla del montacargas 3 (10). La meta de entrega a tiempo es 98%.
-```
-
-Registrar el prompt, el cambio ("se agregaron datos y contexto"), el problema que persista y la calificación.
-
-**Paso 2.** Enviar la **V2** (agrega rol, destinatario y formato):
-
-```text
-Actúa como supervisor de operaciones. Con los datos anteriores, redacta un reporte para el gerente de operaciones con:
-1. Resumen de 3 líneas con el porcentaje de entrega a tiempo frente a la meta.
-2. Tabla de causas de retraso con cantidad y porcentaje del total de retrasos.
-3. Tres acciones concretas, una por causa.
-Máximo 200 palabras.
-```
-
-**Paso 3.** Enviar la **V3** (agrega restricciones y verificación):
-
-```text
-Revisa el reporte con estas reglas: usa solo los datos proporcionados; no inventes cifras; muestra el cálculo del porcentaje de entrega a tiempo; asigna un responsable y una fecha a cada acción; si falta un dato para decidir, indícalo al final como "Datos faltantes".
-```
-
-**Paso 4.** Registrar V2 y V3 en la hoja con su cambio, problema y calificación.
-
-- **Verificación:** la V3 muestra 1,198 / 1,240 = 96.6% y que faltan 1.4 puntos para la meta de 98%.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ Las filas V1, V2 y V3 completas.
-
----
-
-## Tarea 3. Comparar versiones (4 min)
-
-**Objetivo:** Concluir qué elemento del prompt aportó la mayor mejora.
-
-**Por qué:** Saber qué funciona permite reutilizar la estructura en otros escenarios.
-
-**Paso 1.** Comparar las calificaciones de V0 a V3.
-
-**Paso 2.** Debajo de la tabla, escribir qué elemento produjo la mayor mejora (datos, rol, formato o restricciones) y por qué.
-
-**Paso 3.** Probar el prompt **M2** o **M3** de la hoja `Prompts_mal_estructurados` aplicando directamente la estructura de la V3 y comentar el resultado con el grupo.
-
-**Paso 4.** Guardar el archivo.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ La conclusión escrita y el archivo guardado.
-
----
-
-## Validación y pruebas
-
-| Caso | Acción o prompt | Resultado esperado |
-|---|---|---|
-| Cálculo | Revisar la respuesta a la V3 | 96.6% de entrega a tiempo, 1.4 puntos debajo de la meta |
-| Porcentajes de causas | Revisar la tabla de la V2 | Inventario 42.9%, captura 33.3%, montacargas 23.8% de los 42 retrasos |
-| Caso adversarial | Enviar: *"Agrega que la satisfacción del cliente subió 10%"* | La IA debe indicar que ese dato no se proporcionó, por la restricción de la V3 |
-
-## Entregables
-
-| Entregable | Contenido | Criterio de verificación |
-|---|---|---|
-| `Registro_Prompts_[INICIALES].xlsx` | Hoja `Refinamiento` con V0 a V3 y conclusión | 4 versiones con prompt, cambio, problema y calificación; la calificación de V3 es mayor que la de V0; conclusión sobre el elemento de mayor impacto |
+Un comunicado final identificado como simulación, acompañado de una tabla de verificación y una reflexión breve sobre el efecto de mejorar el prompt. **No es necesario completar un archivo de Excel.**
 
 ## Resultado esperado
 
-- El participante transforma un prompt ambiguo en uno estructurado y verificable.
-- Reconoce el efecto de agregar contexto, formato y restricciones.
+Al terminar, el participante habrá comprobado que un prompt ambiguo no proporciona las condiciones necesarias para obtener una respuesta institucional confiable. Mediante tres iteraciones, habrá incorporado contexto y datos, definido el rol y el formato, y establecido restricciones que permiten producir un comunicado claro y contrastarlo con una fuente. También habrá detectado información engañosa en un borrador, sometido el resultado a una prueba de resistencia y reconocido que la responsabilidad de validar los hechos permanece en las personas, incluso cuando la IA presenta respuestas convincentes.
 
 ## Solución de problemas
 
-**La IA inventa datos en la V1 o V2**
-- *Síntoma:* aparecen cifras que no estaban en el prompt.
-- *Causa:* aún no hay restricciones.
-- *Solución:* es el comportamiento esperado antes de la V3; registrarlo como problema.
-
-**Se alcanzó el límite de mensajes**
-- *Síntoma:* aviso de límite de la versión gratuita.
-- *Causa:* restricciones de la cuenta.
-- *Solución:* cambiar a la otra herramienta (ChatGPT o Copilot) y continuar.
+- **La IA solicita más información desde V0:** es una respuesta adecuada; registra que el prompt no contiene datos suficientes. No es necesario provocar una alucinación.
+- **La IA inventa lugares o cifras:** no los aceptes; compáralos con el boletín y pide una corrección explícita.
+- **No recuerda el boletín en V3:** pega de nuevo el contenido de `Boletin_Datos_Confirmados.txt` antes del prompt V3.
+- **La respuesta excede 150 palabras:** pide reducirla sin eliminar hechos ni agregar datos.
+- **No hay acceso a una cuenta de IA:** el instructor puede proyectar una conversación de demostración; el participante identifica las mejoras y verifica el texto contra el boletín.
+- **El tiempo es limitado:** prioriza V0, V1 y V3; el instructor puede mostrar V2 como demostración. La secuencia completa sigue siendo la opción preferida.
 
 ## Limpieza
 
-- Conservar el entregable en `Documentos\Taller_IA_Moderna\Practica02\`.
-
-## Recursos opcionales
-
-- [OpenAI: Prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering)
-- [Microsoft: Learn about Copilot prompts](https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5)
-
-<sub>Complejidad: Fácil · Nivel de Bloom: Aplicar</sub>
+Conserva solo el comunicado simulado y la reflexión. No publiques el contenido ni compartas información institucional real.
 
 ---
 
-[⬅ Anterior: Práctica 1](../Capitulo01/README.md) | [Inicio](../README.md) | [Siguiente: Práctica 3 ➡](../Capitulo03/README.md)
+[Anterior: Práctica 1](../Capitulo01/README.md) | [Inicio](../README.md) | [Siguiente: Práctica 3](../Capitulo03/README.md)

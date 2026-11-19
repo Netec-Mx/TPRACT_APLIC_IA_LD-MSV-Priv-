@@ -1,158 +1,130 @@
 # Práctica 4. Aprendizaje automático interactivo
 
+## Misión Abastecimiento: entrena una IA para reconocer suministros
+
 **Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 4 de 7**
 
-⏱️ **Duración:** 20 min · 🛠️ **Herramienta:** [Teachable Machine (Google)](https://teachablemachine.withgoogle.com/) · 📄 **Entregable:** `Registro_Teachable_Machine_[INICIALES].xlsx`
+- **Duración:** 20 minutos.
+- **Nivel:** básico; no requiere programación.
+- **Público:** personal militar, personal civil y personal de entidades adscritas al Sector Defensa de Perú.
+- **Herramienta:** [Google Teachable Machine](https://teachablemachine.withgoogle.com/) (proyecto de imágenes).
+- **Entregable:** una **ficha de resultados** breve con el desempeño del clasificador y una conclusión sobre sesgo; no se requiere Excel.
 
-## Descripción
+> **Simulación:** las imágenes son ilustraciones sintéticas de suministros ficticios. No representan productos reales ni deben utilizarse para inventarios, seguridad o decisiones operativas. No cargues fotografías institucionales ni datos reales.
 
-Un modelo de aprendizaje automático aprende de los ejemplos que recibe, y también de sus errores. En esta práctica el participante entrenará en Teachable Machine un clasificador de imágenes de tres figuras (círculo, cuadrado y triángulo), lo probará con imágenes que no vio y después entrenará una versión con datos sesgados para observar cómo el modelo aprende el color en lugar de la forma. Así comprenderá por qué la calidad de los datos determina la calidad del modelo.
+## Situación
+
+Un centro ficticio de abastecimiento humanitario desea explorar si una IA podría reconocer, a partir de imágenes, tres categorías de suministros: **agua**, **botiquín** y **manta**. Tu misión es entrenar un clasificador sin código, probarlo con imágenes desconocidas y descubrir si un segundo modelo confunde **color** con **categoría**.
+
+El modelo es una demostración educativa: **no** verifica cantidades, estado físico, contenido ni calidad de suministros.
 
 ## Objetivos de aprendizaje
 
-Al finalizar la práctica, el participante será capaz de:
+Al finalizar podrás:
 
-- Crear y entrenar un modelo de clasificación de imágenes sin programar.
-- Evaluar el modelo con imágenes de prueba y calcular su exactitud.
-- Identificar el efecto de datos sesgados y corregirlo mejorando el conjunto de entrenamiento.
+1. Crear tres clases y entrenar un modelo de clasificación de imágenes en Teachable Machine.
+2. Probarlo con imágenes que no formaron parte del entrenamiento y registrar aciertos y errores.
+3. Reconocer cómo un conjunto de entrenamiento con colores asociados a cada clase puede generar una dependencia no deseada.
+4. Proponer una mejora a los datos de entrenamiento y explicar por qué la predicción de un modelo debe verificarse.
 
-<img src="../images/p04-objetivo.svg" alt="Flujo de la Práctica 4: proyecto y clases, entrenamiento, prueba y corrección del sesgo" width="720"/>
+## Archivos necesarios
 
-## Antes de empezar
-
-| Elemento | Valor |
+| Archivo | Uso |
 |---|---|
-| Dónde trabajar | Navegador web: [teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com/) |
-| Archivos de la práctica | [Dataset_Figuras.zip](recursos/Dataset_Figuras.zip) y [Registro_Teachable_Machine.xlsx](recursos/Registro_Teachable_Machine.xlsx) |
-| Contenido del dataset | `entrenamiento/` (15 imágenes por clase), `prueba/` (5 por clase), `sesgo_entrenamiento/` (cada figura de un solo color) y `sesgo_prueba/` (3 imágenes con colores cambiados) |
-| Carpeta de trabajo | `Documentos\Taller_IA_Moderna\Practica04\` |
-| Nombre del entregable | `Registro_Teachable_Machine_[INICIALES].xlsx` |
+| [`Dataset_Suministros.zip`](recursos/Dataset_Suministros.zip) | Imágenes listas para entrenar y probar los modelos. |
+| [`Ficha_Resultados.md`](recursos/Ficha_Resultados.md) | Plantilla breve para registrar resultados y conclusiones. |
 
-> **Para descargar el dataset:** abrir [Dataset_Figuras.zip](recursos/Dataset_Figuras.zip), seleccionar **Download raw file** y descomprimirlo en la carpeta de trabajo (clic derecho > **Extraer todo**). Se crea la carpeta `dataset` con 108 imágenes. Teachable Machine procesa las imágenes en el navegador; no se suben a un servidor.
+El ZIP contiene **75 imágenes de entrenamiento y prueba** y 3 imágenes de ejemplo: `entrenamiento/` (12 imágenes por clase, 36 en total), `prueba/` (3 por clase, 9 en total), `sesgo_entrenamiento/` (9 por clase, 27 en total), `sesgo_prueba/` (3 con colores intercambiados) y `ejemplos/` (3). **Nunca cargues imágenes de `prueba/` o `sesgo_prueba/` como entrenamiento.**
 
----
+### Antes de iniciar
 
-## Tarea 1. Proyecto y clases (4 min)
-
-**Objetivo:** Tener un proyecto de imágenes con 3 clases.
-
-**Por qué:** Cada clase es una categoría que el modelo debe aprender a distinguir.
-
-**Paso 1.** Guardar el registro como `Registro_Teachable_Machine_[INICIALES].xlsx`.
-
-**Paso 2.** Abrir [Teachable Machine](https://teachablemachine.withgoogle.com/), seleccionar **Get Started** > **Image Project** > **Standard image model**.
-
-**Paso 3.** Cambiar el nombre de **Class 1** a `Circulo` y de **Class 2** a `Cuadrado`. Seleccionar **Add a class** y nombrarla `Triangulo`.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ Un proyecto con las clases `Circulo`, `Cuadrado` y `Triangulo`.
+1. Descarga y **extrae** `Dataset_Suministros.zip` en tu equipo. Identifica la carpeta `dataset`.
+2. Abre [Teachable Machine](https://teachablemachine.withgoogle.com/) en Chrome o Edge actualizado. Comprueba que puedes abrir **Primeros pasos → Proyecto de imagen → Modelo de imagen estándar** (los nombres pueden variar ligeramente).
+3. Mantén las imágenes de prueba separadas de las de entrenamiento. Trabaja solo con archivos ficticios proporcionados.
 
 ---
 
-## Tarea 2. Cargar datos y entrenar (6 min)
+## Tarea 1. Preparar la misión (3 minutos)
 
-**Objetivo:** Entrenar el modelo con 45 imágenes.
+**Paso 1.** Abre Teachable Machine y selecciona **Primeros pasos → Proyecto de imagen → Modelo de imagen estándar**.
 
-**Por qué:** El modelo solo puede aprender de los ejemplos que se le dan.
+**Paso 2.** Renombra las clases existentes como `Agua` y `Botiquin`. Pulsa **Añadir una clase** y nómbrala `Manta`.
 
-**Paso 1.** En la clase `Circulo`, seleccionar **Upload** > **Choose images from your files**, ir a `dataset\entrenamiento\Circulo`, seleccionar las 15 imágenes y abrirlas.
+**Paso 3.** Examina una imagen de cada carpeta de `dataset/ejemplos/`. ¿Qué características de **forma** distinguen los tres suministros? Los colores pueden cambiar.
 
-**Paso 2.** Repetir para `Cuadrado` y `Triangulo` con sus carpetas.
+**Resultado esperado:** proyecto con tres clases correctamente nombradas y una hipótesis inicial sobre los rasgos visuales que permiten distinguirlas.
 
-**Paso 3.** Seleccionar **Train Model** y esperar a que termine (de 30 a 60 segundos). No cambiar de pestaña mientras entrena.
+## Tarea 2. Entrenar el clasificador (7 minutos)
 
-- **Qué verás:** el panel **Preview** con la opción de cargar una imagen y barras de confianza por clase.
+**Paso 1.** En `Agua`, selecciona **Subir → Selecciona imágenes de tus archivos o arrástralas aquí** y carga las 12 imágenes de `dataset/entrenamiento/Agua/`.
 
-**Al terminar esta tarea debes tener:**
+**Paso 2.** Repite con las 12 imágenes de `Botiquin` y las 12 de `Manta` desde sus carpetas respectivas. Confirma que cada clase tenga **12 ejemplos**.
 
-- ✔ El modelo entrenado.
+**Paso 3.** Pulsa **Preparar modelo**. Espera a que aparezca **Exportar modelo**; evita cerrar o cambiar la pestaña mientras entrena.
 
----
+**Paso 4.** En **Entrada**, cambia la fuente de entrada de cámara a **Archivo**, y carga una imagen de `dataset/prueba/Agua/`.
 
-## Tarea 3. Probar el modelo (5 min)
+**Resultado esperado:** un modelo entrenado con 36 imágenes y al menos una predicción visible con puntuaciones por clase. Estas puntuaciones no son garantías de exactitud ni de seguridad.
 
-**Objetivo:** Completar la hoja `Pruebas` con las 15 imágenes de prueba.
+## Tarea 3. ¿Reconoce lo que nunca vio? (5 minutos)
 
-**Por qué:** La exactitud se mide con imágenes que el modelo no vio durante el entrenamiento.
+**Paso 1.** Prueba **una imagen de cada clase** de `dataset/prueba/` (3 pruebas rápidas). Anota la clase real, la predicción y si acertó.
 
-**Paso 1.** En **Preview**, cambiar **Input** de **Webcam** a **File** y cargar `prueba\Circulo\circulo_01.png`.
+**Paso 2.** Si te alcanza el tiempo, prueba las **9 imágenes** disponibles. Calcula: `exactitud = aciertos / imágenes probadas × 100`. Anota siempre cuántas probaste; no compares 3/3 con 9/9 como si fueran evaluaciones equivalentes.
 
-**Paso 2.** Anotar la clase predicha, la confianza y si es correcta.
+**Paso 3.** Identifica si algún error podría explicarse por diferencias de color, tamaño, posición o forma. No inventes causas: plantea hipótesis.
 
-**Paso 3.** Repetir con las 15 imágenes de prueba.
+**Resultado esperado:** mínimo tres predicciones registradas, un porcentaje calculado sobre las pruebas efectivamente realizadas y una observación sobre errores o incertidumbre.
 
-- **Qué verás:** la celda de exactitud calcula aciertos sobre 15. Con este dataset se espera una exactitud alta (13 a 15 aciertos).
+## Tarea 4. El engaño del color (5 minutos)
 
-**Al terminar esta tarea debes tener:**
+**Paso 1.** Abre una **segunda pestaña** de Teachable Machine. Crea otro proyecto de imágenes con las clases `Agua`, `Botiquin` y `Manta`.
 
-- ✔ 15 pruebas registradas y la exactitud calculada.
+**Paso 2.** Carga las 9 imágenes de cada clase desde `dataset/sesgo_entrenamiento/`: **agua azul, botiquines rojos y mantas verdes**. Entrena el segundo modelo.
 
----
+**Paso 3.** En el segundo modelo, prueba `dataset/sesgo_prueba/agua_color_cambiado.png` (agua roja). Observa qué predice. Si hay tiempo, prueba también `botiquin_color_cambiado.png` y `manta_color_cambiado.png`.
 
-## Tarea 4. Corregir el sesgo (5 min)
+**Paso 4.** Vuelve al **primer modelo** y prueba exactamente la misma imagen de agua roja. Compara las dos predicciones.
 
-**Objetivo:** Completar la hoja `Sesgo` y las conclusiones.
+**Paso 5.** Completa la ficha: ¿cuál modelo parece depender más del color? ¿Cómo mejorarías el entrenamiento? **No afirmes que hubo sesgo solo porque los colores estaban asociados: describe lo que efectivamente observaste.**
 
-**Por qué:** Si los datos tienen un patrón accidental (como el color), el modelo lo aprende en lugar del concepto correcto.
-
-**Paso 1.** Abrir una pestaña nueva de Teachable Machine, crear otro proyecto con las mismas 3 clases y cargar las imágenes de `sesgo_entrenamiento` (todos los círculos rojos, cuadrados azules y triángulos verdes). Entrenar.
-
-**Paso 2.** Probar con las 3 imágenes de `sesgo_prueba` (círculo azul, cuadrado verde y triángulo rojo) y anotar las predicciones.
-
-- **Qué verás:** el modelo suele clasificar por color: por ejemplo, el círculo azul como `Cuadrado`.
-
-**Paso 3.** Probar las mismas 3 imágenes en el primer modelo (entrenado con colores variados) y anotar las predicciones como **modelo corregido**.
-
-**Paso 4.** Responder las preguntas de la hoja `Conclusiones` y guardar el archivo.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ La comparación entre modelo sesgado y corregido, y las conclusiones escritas.
+**Resultado esperado:** dos modelos entrenados, comparación de al menos una imagen con color cambiado y una recomendación fundamentada para diversificar los ejemplos.
 
 ---
 
-## Validación y pruebas
+## Entregable: ficha de resultados
 
-| Caso | Acción | Resultado esperado |
-|---|---|---|
-| Exactitud | Revisar la celda de exactitud | 87% o más (13 de 15 o mejor) |
-| Sesgo | Probar `circulo_azul.png` en el modelo sesgado | Predicción incorrecta o confianza baja en `Circulo` |
-| Caso adversarial | Cargar en **Preview** una imagen que no sea ninguna figura (por ejemplo, la foto de la Práctica 3) | El modelo igual asigna una de las 3 clases: no sabe decir "ninguna" si no se le entrenó |
+Completa [`Ficha_Resultados.md`](recursos/Ficha_Resultados.md) con:
 
-## Entregables
+- Número de imágenes por clase en el primer modelo.
+- Resultados de al menos 3 imágenes no vistas y exactitud correspondiente.
+- Predicciones de los dos modelos para al menos una imagen de color cambiado.
+- Una conclusión sobre calidad de datos y una propuesta de mejora.
 
-| Entregable | Contenido | Criterio de verificación |
-|---|---|---|
-| `Registro_Teachable_Machine_[INICIALES].xlsx` | Hojas `Pruebas`, `Sesgo` y `Conclusiones` | 15 pruebas con exactitud; 3 pruebas de sesgo en ambos modelos; 3 conclusiones |
+No es necesario compartir un enlace público del modelo, exportarlo ni cargar datos institucionales.
 
-## Resultado esperado
+## Validación
 
-- El participante entrena y evalúa un modelo de clasificación con datos propios.
-- Explica cómo los datos de entrenamiento determinan lo que el modelo aprende y cómo corregir un sesgo.
+| Comprobación | Criterio |
+|---|---|
+| Entrenamiento | Tres clases con 12 imágenes cada una en el primer modelo. |
+| Evaluación | Al menos una prueba nueva por clase; porcentaje calculado correctamente. |
+| Sesgo | Comparación de una misma imagen en ambos modelos. |
+| Reflexión | Identifica una limitación y una mejora posible de los datos. |
 
-## Solución de problemas
+**Importante:** no se exige un porcentaje mínimo de aciertos ni se garantiza que el segundo modelo falle. Los resultados dependen del entrenamiento, la inicialización y las imágenes. El objetivo es **observar y explicar**, no obtener una predicción predeterminada.
 
-**El entrenamiento no inicia o se congela**
-- *Síntoma:* la barra de progreso no avanza.
-- *Causa:* la pestaña quedó en segundo plano o el navegador tiene poca memoria.
-- *Solución:* mantener la pestaña visible, cerrar otras pestañas y volver a entrenar.
+## Si algo falla
 
-**No se pueden seleccionar varias imágenes**
-- *Síntoma:* solo se carga una imagen.
-- *Causa:* selección individual.
-- *Solución:* en la ventana de archivos, usar **Ctrl+A** para seleccionar las 15 imágenes de la carpeta.
+- **No aparece el botón de carga:** comprueba que creaste un **Image Project** y selecciona **Upload**, no Webcam.
+- **Entrenamiento lento o detenido:** espera, mantén la pestaña activa y cierra otras aplicaciones pesadas. No recargues sin necesidad.
+- **No alcanza el tiempo para las 9 pruebas:** registra 3, una por clase. El resto es ampliación opcional.
+- **El segundo modelo no confunde colores:** también es un resultado válido. Explica que la correlación de colores es un **riesgo de aprendizaje de atajos**, no un error garantizado.
+- **La plataforma no funciona:** el instructor puede mostrar una demostración previamente preparada. En ese caso, anota que observaste el entrenamiento, pero **no** declares que entrenaste el modelo personalmente.
 
-## Limpieza
+## Para reflexionar
 
-- Conservar el entregable en `Documentos\Taller_IA_Moderna\Practica04\`.
-- Los proyectos de Teachable Machine se pierden al cerrar la pestaña; no es necesario eliminarlos.
-
-## Recursos opcionales
-
-- [Teachable Machine: preguntas frecuentes](https://teachablemachine.withgoogle.com/faq)
-
-<sub>Complejidad: Fácil · Nivel de Bloom: Aplicar</sub>
+En una operación real, ¿qué consecuencias tendría que un modelo confundiera dos suministros por su color o presentación? ¿Qué verificación humana necesitarías antes de utilizar sus resultados?
 
 ---
 

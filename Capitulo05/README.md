@@ -1,168 +1,144 @@
 # Práctica 5. Simulación de aprendizaje profundo
 
-**Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 5 de 7**
+## Misión Rescate del Modelo: una IA que no consigue aprender
 
-⏱️ **Duración:** 20 min · 🛠️ **Herramienta:** [TensorFlow Playground](https://playground.tensorflow.org/) · 📄 **Entregable:** `Registro_TensorFlow_Playground_[INICIALES].xlsx`
+**Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 5 de 7**  
+**Duración:** 20 minutos  
+**Herramienta:** [TensorFlow Playground](https://playground.tensorflow.org/)  
+**Nivel:** básico  
+**Modalidad:** individual, guiada, sin programación  
+**Entregable:** ficha breve de diagnóstico y rescate del modelo.
 
-## Descripción
+## Contexto de la misión
 
-El aprendizaje profundo usa redes neuronales con varias capas. TensorFlow Playground permite ver una red neuronal aprender en tiempo real, sin programar. En esta práctica el participante resolverá problemas de clasificación de dificultad creciente (dos grupos, un círculo y una espiral), agregará capas y neuronas, cambiará la tasa de aprendizaje y registrará cómo cada cambio afecta la pérdida (*loss*) y la capacidad del modelo para separar las clases.
+Un centro ficticio de análisis y capacitación del Sector Defensa de Perú está evaluando redes neuronales con datos sintéticos. El primer modelo separa correctamente dos grupos de puntos, pero al enfrentar patrones circulares y más complejos deja de funcionar. Tu misión es **diagnosticar el problema, modificar la red y comprobar qué cambió**.
 
-## Objetivos de aprendizaje
+> Todos los puntos y etiquetas son simulados. No corresponden a personas, unidades, instalaciones ni operaciones reales. La práctica es una demostración conceptual, no un sistema de toma de decisiones.
 
-Al finalizar la práctica, el participante será capaz de:
+## Objetivo
 
-- Identificar los componentes de una red neuronal: entradas, capas ocultas, neuronas, pesos y salida.
-- Explicar por qué los problemas no lineales requieren capas ocultas o características adicionales.
-- Analizar el efecto de la tasa de aprendizaje en el entrenamiento a partir de la pérdida de prueba.
+Experimentar con una red neuronal en TensorFlow Playground para observar cómo las **capas ocultas**, el **número de neuronas**, las **características de entrada** y la **tasa de aprendizaje** afectan el entrenamiento y la capacidad de clasificación de patrones.
 
-<img src="../images/p05-objetivo.svg" alt="Flujo de la Práctica 5: interfaz y datos, problema lineal, capas y neuronas, tasa de aprendizaje" width="720"/>
+## Resultados esperados
+
+Al terminar podrás:
+
+1. Identificar entradas, capas ocultas, neuronas, conexiones y salida de una red neuronal.
+2. Distinguir un problema separable mediante una frontera recta de uno que requiere una frontera curva.
+3. Mejorar un modelo cambiando su arquitectura o sus características.
+4. Explicar por qué una tasa de aprendizaje demasiado alta o baja puede dificultar el entrenamiento.
+5. Comparar la pérdida de entrenamiento (*training loss*) y de prueba (*test loss*) sin confundirlas con el porcentaje de aciertos.
 
 ## Antes de empezar
 
-| Elemento | Valor |
+- Utiliza un navegador actualizado y abre <https://playground.tensorflow.org/>.
+- No necesitas cuenta, instalar software ni programar.
+- Abre también [`recursos/Ficha_Rescate.md`](recursos/Ficha_Rescate.md) para registrar cuatro observaciones breves.
+- Trabaja con **Tipo de problema:Clasificación**, no Regresión.
+- Si el sitio conserva cambios de una sesión anterior, **Refresca la página** y verifica cada parámetro indicado.
+- **Importante:** los valores de pérdida y las fronteras pueden variar entre ejecuciones. No se exige una cifra exacta ni un número fijo de épocas.
+
+## Guía rápida de la interfaz
+
+- **DATA:** elige el conjunto de puntos (*Gaussian*, *Circle*, *Spiral*).
+- **FEATURES:** selecciona las entradas, por ejemplo `x1` y `x2`.
+- **HIDDEN LAYERS:** agrega o quita capas y neuronas con los controles `+` y `−`.
+- **Learning rate:** modifica cuánto cambian los pesos en cada actualización.
+- **Play / Pause / Reset:** inicia, detiene o reinicia el entrenamiento.
+- **OUTPUT:** observa la frontera de clasificación y las métricas *training loss* y *test loss*.
+
+> **Interpretación:** una pérdida menor suele indicar mejor ajuste respecto a esa métrica, pero **no es un porcentaje de precisión**. Para comparar dos configuraciones, usa el mismo conjunto de datos y observa también la frontera y la pérdida de prueba.
+
+---
+
+## Desafío 1. Diagnóstico: ¿por qué falla? (4 minutos)
+
+### Experimento A: el problema sencillo
+
+1. Selecciona **Gaussian** en DATA.
+2. Deja activadas solamente las entradas **x1** y **x2**.
+3. Elimina las capas ocultas, hasta tener **0 hidden layers**.
+4. Establece **Learning rate = 0.03**. Conserva los demás parámetros predeterminados de clasificación.
+5. Pulsa **Reset** y luego **Play**. Observa durante unos segundos y pausa cuando la frontera deje de cambiar apreciablemente.
+6. Anota si la frontera es aproximadamente recta y si logra separar los grupos.
+
+### Experimento B: el mismo modelo ante un círculo
+
+1. Cambia solamente el conjunto de datos a **Circle**.
+2. Reinicia el entrenamiento y vuelve a observar.
+3. Compara la frontera con la del experimento A.
+
+**Pregunta de diagnóstico:** ¿qué limitación tiene una red sin capas ocultas cuando debe separar puntos dentro y fuera de un círculo?
+
+**Resultado esperado:** reconocer que una frontera lineal puede separar los grupos del ejemplo sencillo, pero no representar adecuadamente una frontera circular con solo `x1` y `x2`.
+
+## Desafío 2. Rescate: modifica la arquitectura (8 minutos)
+
+### Experimento C: añadir capacidad al modelo
+
+1. Mantén **Circle**, `x1`, `x2` y **Learning rate = 0.03**.
+2. Agrega **1 capa oculta con 4 neuronas**.
+3. Pulsa **Reset** y **Play**. Espera hasta observar si aparece una frontera curva; si tarda, permite más épocas.
+4. Registra si la separación mejora respecto al experimento B y qué sucede con la *test loss*.
+5. Si la frontera todavía no mejora claramente, aumenta la capa a **6 u 8 neuronas**, reinicia y observa. Registra que fue necesario ajustar la capacidad.
+
+### Experimento D: el desafío de la espiral
+
+1. Cambia el conjunto de datos a **Spiral** y conserva inicialmente la red del experimento C.
+2. Reinicia y observa brevemente: ¿puede seguir las dos espirales?
+3. Agrega capacidad: prueba **3 capas ocultas** con **8, 8 y 4 neuronas**, si los controles de tu interfaz lo permiten.
+4. Activa las entradas `x1`, `x2`, `x1²`, `x2²`, `sin(x1)` y `sin(x2)` cuando estén disponibles.
+5. Reinicia y observa el entrenamiento. Si no se logra una buena separación en el tiempo disponible, registra la dificultad: **no es obligatorio conseguir una espiral perfecta**.
+
+**Pregunta de rescate:** ¿por qué cambiar la arquitectura o las características de entrada puede ayudar en problemas más complejos?
+
+**Resultado esperado:** observar una mejora posible en Circle y comprender que Spiral es un problema más exigente, cuyo aprendizaje depende de la configuración, las épocas y la inicialización aleatoria.
+
+## Desafío 3. Sabotaje controlado: ¿qué pasa si el modelo aprende mal? (5 minutos)
+
+1. Vuelve a **Circle**, entradas `x1` y `x2`, **1 capa oculta de 4 neuronas**.
+2. Establece **Learning rate = 0.03**, reinicia y observa el comportamiento durante un intervalo breve.
+3. Cambia **Learning rate = 3**, reinicia y observa si la pérdida oscila, aumenta o el entrenamiento se vuelve inestable. **No se garantiza que ocurra en todas las ejecuciones**.
+4. Prueba **Learning rate = 0.0001**, reinicia y observa el avance durante un intervalo similar: ¿aprende más lentamente?
+5. Recupera **0.03** y explica cuál configuración fue más útil en tu ejecución.
+
+**Resultado esperado:** distinguir entre una tasa que permite progreso observable, una potencialmente inestable y otra que puede producir cambios demasiado lentos.
+
+## Desafío 4. Informe de rescate (3 minutos)
+
+Completa [`recursos/Ficha_Rescate.md`](recursos/Ficha_Rescate.md) con respuestas breves:
+
+1. ¿Por qué falló el modelo sin capas ocultas con Circle?
+2. ¿Qué cambio mejoró el resultado y qué observaste?
+3. ¿Qué ocurrió al modificar la tasa de aprendizaje?
+4. ¿Por qué no basta con decir que un modelo es bueno porque su pérdida de entrenamiento es baja?
+
+**Producto final:** una ficha breve con el diagnóstico, el ajuste aplicado y una recomendación técnica explicada en lenguaje sencillo.
+
+---
+
+## Criterios de cumplimiento
+
+- Se compararon **Gaussian** y **Circle** con 0 capas ocultas.
+- Se probó al menos **una modificación de capas o neuronas**.
+- Se exploró **Spiral** como problema más complejo.
+- Se compararon al menos **dos tasas de aprendizaje**.
+- Se registraron observaciones reales, sin inventar valores ni afirmar resultados no observados.
+
+## Si algo no funciona
+
+| Situación | Qué hacer |
 |---|---|
-| Dónde trabajar | Navegador web: [playground.tensorflow.org](https://playground.tensorflow.org/) |
-| Archivos de la práctica | [Registro_TensorFlow_Playground.xlsx](recursos/Registro_TensorFlow_Playground.xlsx) |
-| Carpeta de trabajo | `Documentos\Taller_IA_Moderna\Practica05\` |
-| Dato clave | **Test loss** cercana a 0 = el modelo clasifica bien datos que no vio; por encima de 0.4 = clasifica mal |
-| Nombre del entregable | `Registro_TensorFlow_Playground_[INICIALES].xlsx` |
+| No ves cambios en la red | Pulsa **Play** y comprueba que no esté pausada. |
+| La frontera no mejora con 4 neuronas | Entrena más épocas o prueba 6–8 neuronas; documenta lo observado. |
+| La espiral no se separa bien | Es válido; explica que la arquitectura y el tiempo de entrenamiento influyen. |
+| Los resultados difieren de los del instructor | Es normal: los pesos se inicializan de manera aleatoria. |
+| No encuentras una característica o control | Trabaja con las opciones visibles; informa al instructor y registra la diferencia. |
+| El sitio no abre | El instructor puede demostrar los experimentos en pantalla; registra las observaciones compartidas. |
 
-> Los resultados exactos varían en cada ejecución porque los pesos iniciales son aleatorios. Se registran los valores observados.
+## Cierre
 
----
-
-## Tarea 1. Interfaz y datos (4 min)
-
-**Objetivo:** Ubicar los controles que se usarán.
-
-**Por qué:** Cada experimento cambia uno de estos controles.
-
-**Paso 1.** Guardar el registro como `Registro_TensorFlow_Playground_[INICIALES].xlsx` y abrir [TensorFlow Playground](https://playground.tensorflow.org/).
-
-**Paso 2.** Ubicar con el instructor:
-   - **DATA:** los 4 conjuntos de datos (Circle, Exclusive or, Gaussian, Spiral).
-   - **FEATURES:** las entradas (x1, x2, x1², x2², sin(x1), sin(x2) y otras).
-   - **HIDDEN LAYERS:** botones **+** y **−** para capas y neuronas.
-   - Barra superior: **Play/Pause**, **Epoch**, **Learning rate** y **Activation**.
-   - **OUTPUT:** **Test loss** y **Training loss**.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ Identificados los 5 grupos de controles.
-
----
-
-## Tarea 2. Problema lineal (4 min)
-
-**Objetivo:** Registrar E1 y E2.
-
-**Por qué:** Muestra qué puede resolver una red sin capas ocultas y qué no.
-
-**Paso 1.** Configurar **E1**: dataset **Gaussian**, solo x1 y x2, 0 capas ocultas (quitar capas con **−**), learning rate `0.03`, activación `Tanh`. Seleccionar **Play** y detener cuando la pérdida se estabilice (unas 200 épocas).
-
-- **Qué verás:** una línea recta separa los dos grupos; **Test loss** cercana a 0.
-
-**Paso 2.** Registrar épocas, test loss y si separa bien las clases.
-
-**Paso 3.** Configurar **E2**: igual que E1, pero dataset **Circle**. Seleccionar **Play** durante unas 300 épocas.
-
-- **Qué verás:** el modelo no logra separar el círculo con una línea recta; la pérdida se mantiene alta.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ E1 y E2 registrados.
-
----
-
-## Tarea 3. Capas y neuronas (8 min)
-
-**Objetivo:** Registrar E3, E4 y E5.
-
-**Por qué:** Las capas ocultas permiten aprender fronteras curvas; los problemas más complejos necesitan más capacidad.
-
-**Paso 1.** **E3**: dataset **Circle**, x1 y x2, 1 capa oculta con 4 neuronas. Seleccionar **Play** unas 300 épocas.
-
-- **Qué verás:** la frontera se curva y rodea el círculo; la pérdida baja.
-
-**Paso 2.** **E4**: misma red, dataset **Spiral**. Seleccionar **Play** unas 500 épocas.
-
-- **Qué verás:** la red no logra seguir la espiral.
-
-**Paso 3.** **E5**: dataset **Spiral**, activar las 6 características de la tabla (x1, x2, x1², x2², sin(x1), sin(x2)) y usar 3 capas con 8, 8 y 4 neuronas. Seleccionar **Play** hasta 1,000 épocas como máximo.
-
-- **Qué verás:** la frontera empieza a seguir la espiral y la pérdida baja de forma notable.
-
-**Paso 4.** Registrar los 3 experimentos y observar los pesos: las líneas más gruesas son conexiones con más influencia.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ E3, E4 y E5 registrados con su observación.
-
----
-
-## Tarea 4. Tasa de aprendizaje (4 min)
-
-**Objetivo:** Registrar E6 y E7 y guardar el entregable.
-
-**Por qué:** La tasa de aprendizaje controla el tamaño de cada ajuste de los pesos; si es muy alta o muy baja, el modelo no aprende bien.
-
-**Paso 1.** **E6**: configuración de E3 con learning rate `3`. Seleccionar **Play** 300 épocas.
-
-- **Qué verás:** la pérdida oscila o no baja: los ajustes son demasiado grandes.
-
-**Paso 2.** **E7**: configuración de E3 con learning rate `0.0001`. Seleccionar **Play** 300 épocas.
-
-- **Qué verás:** la pérdida casi no cambia: los ajustes son demasiado pequeños.
-
-**Paso 3.** Registrar ambos, escribir debajo de la tabla una conclusión de 2 líneas y guardar el archivo.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ Los 7 experimentos registrados y la conclusión escrita.
-
----
-
-## Validación y pruebas
-
-| Caso | Configuración | Resultado esperado |
-|---|---|---|
-| Lineal | E1 (Gaussian, 0 capas) | Separa bien; test loss baja |
-| No lineal | E2 frente a E3 (Circle sin y con capa oculta) | E3 tiene una pérdida mucho menor que E2 |
-| Tasa alta | E6 (learning rate 3) | La pérdida oscila o no converge |
-| Caso adversarial | Pregunta del instructor: *"¿Más capas siempre mejoran el modelo?"* | No: más capas sin datos o configuración adecuados pueden entrenar más lento o sobreajustarse; se elige la capacidad según el problema |
-
-## Entregables
-
-| Entregable | Contenido | Criterio de verificación |
-|---|---|---|
-| `Registro_TensorFlow_Playground_[INICIALES].xlsx` | Hoja `Experimentos` y conclusión | 7 experimentos con épocas, test loss, separación y observación; conclusión sobre capas y tasa de aprendizaje |
-
-## Resultado esperado
-
-- El participante explica de forma práctica cómo las capas, las neuronas, las características y la tasa de aprendizaje afectan el aprendizaje de una red neuronal.
-
-## Solución de problemas
-
-**La pérdida aparece como NaN**
-- *Síntoma:* la pérdida muestra `NaN` y la visualización desaparece.
-- *Causa:* tasa de aprendizaje demasiado alta.
-- *Solución:* es un resultado válido para E6; registrarlo y seleccionar el botón de reinicio (flecha circular) antes del siguiente experimento.
-
-**Los resultados no se parecen a los de un compañero**
-- *Síntoma:* pérdidas distintas con la misma configuración.
-- *Causa:* pesos iniciales aleatorios.
-- *Solución:* comparar tendencias, no valores exactos; reiniciar y repetir si es necesario.
-
-## Limpieza
-
-- Conservar el entregable en `Documentos\Taller_IA_Moderna\Practica05\`.
-
-## Recursos opcionales
-
-- [Google: introducción a las redes neuronales](https://developers.google.com/machine-learning/crash-course/neural-networks)
-
-<sub>Complejidad: Intermedia · Nivel de Bloom: Analizar</sub>
+**Idea central:** una red neuronal no aprende correctamente solo por tener más capas. La calidad de su resultado depende del problema, las características de entrada, la arquitectura, los parámetros de entrenamiento y la evaluación sobre datos no utilizados para ajustar el modelo.
 
 ---
 
