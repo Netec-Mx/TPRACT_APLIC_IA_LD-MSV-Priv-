@@ -58,9 +58,9 @@ Cada uno de estos laboratorios está diseñado para ofrecerte una experiencia pr
   - **Descripción**: ejecución guiada en Google Colab de una inferencia de clasificación de imágenes con OpenVINO e interpretación del resultado.
   - ⏱️ **Duración estimada**: 15 min.
 
-### [Práctica 7. IBM Watson Studio](Capitulo07/README.md)
+### [Práctica 7. Exploración y visualización de datos sin programación](Capitulo07/README.md)
 
-  - **Descripción**: creación de un proyecto en IBM watsonx.ai Studio, carga de datos de incidencias y exploración sin programar.
+  - **Descripción**: creación de un proyecto en CODAP, carga de datos y exploración sin programar.
   - ⏱️ **Duración estimada**: 15 min.
 
 
@@ -70,7 +70,7 @@ Cada uno de estos laboratorios está diseñado para ofrecerte una experiencia pr
 - [Teachable Machine](https://teachablemachine.withgoogle.com/)
 - [TensorFlow Playground](https://playground.tensorflow.org/)
 - [OpenVINO Notebooks](https://github.com/openvinotoolkit/openvino_notebooks)
-- [IBM watsonx.ai Studio en IBM Cloud](https://cloud.ibm.com/catalog/services/data-science-experience)
+- [CODAP](https://codap.concord.org/)
 
 ---
 

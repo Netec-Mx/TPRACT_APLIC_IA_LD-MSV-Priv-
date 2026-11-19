@@ -21,7 +21,7 @@
 
 # Objetivo
 
-Preparar, para cada participante, una laptop con navegador actualizado y conexión a Internet, un editor de documentos y hojas de cálculo, y cuentas activas en ChatGPT o Microsoft Copilot, Google (Colab) e IBM Cloud con el plan Lite de watsonx.ai Studio habilitado. El entorno se considera listo cuando se aprueban las validaciones de la sección [Validación del Entorno](#validacion-entorno). No se instala software localmente.
+Preparar, para cada participante, una laptop con navegador actualizado y conexión a Internet, un editor de documentos y hojas de cálculo, y cuentas activas en ChatGPT o Microsoft Copilot Y Google (Colab). El entorno se considera listo cuando se aprueban las validaciones de la sección [Validación del Entorno](#validacion-entorno). No se instala software localmente.
 
 # Requisitos de Hardware
 
@@ -52,7 +52,7 @@ Preparar, para cada participante, una laptop con navegador actualizado y conexi�
 | TensorFlow Playground | Servicio público | N/A | Obligatorio (Práctica 5) | [playground.tensorflow.org](https://playground.tensorflow.org/) |
 | Google Colab | Servicio administrado, nivel gratuito | N/A | Obligatorio (Práctica 6) | [colab.research.google.com](https://colab.research.google.com/) |
 | OpenVINO Notebooks | Notebook `hello-world` de la rama `latest` | N/A | Obligatorio (Práctica 6) | [github.com/openvinotoolkit/openvino_notebooks](https://github.com/openvinotoolkit/openvino_notebooks) |
-| IBM watsonx.ai Studio | Plan Lite | N/A | Obligatorio (Práctica 7) | [cloud.ibm.com/catalog/services/data-science-experience](https://cloud.ibm.com/catalog/services/data-science-experience) |
+| CODAP | Plan Lite | N/A | Obligatorio (Práctica 7) | [codap.concord.org](https://codap.concord.org/) |
 
 Los servicios web cambian su interfaz sin previo aviso. Registrar las diferencias observadas en el [Registro de validación](#registro-validacion).
 
@@ -63,9 +63,8 @@ Los servicios web cambian su interfaz sin previo aviso. Registrar las diferencia
 | Dependencia | Versión o restricción | Componente que la necesita | Método de instalación o habilitación |
 |---|---|---|---|
 | Paquete `openvino` | 2023.1.0 o posterior | Práctica 6 | Lo instala la primera celda del notebook en Colab |
-| IBM Cloud Object Storage | Plan Lite | Práctica 7 | Se crea al asociar almacenamiento al primer proyecto |
 | Carga de imágenes en ChatGPT o Copilot | Disponible con sesión iniciada; límites diarios en versiones gratuitas | Práctica 3 | Botón **+** o clip |
-| Dataset de figuras | `Capitulo04/recursos/Dataset_Figuras.zip` | Práctica 4 | Descargar y descomprimir |
+| Dataset de figuras | `Capitulo04/recursos/Dataset_Suministros.zip` | Práctica 4 | Descargar y descomprimir |
 
 ## Licencias, cuentas y permisos
 
@@ -73,10 +72,9 @@ Los servicios web cambian su interfaz sin previo aviso. Registrar las diferencia
 |---|---|---|---|---|
 | ChatGPT o Copilot | Gratuita o de pago | Cuenta de OpenAI o cuenta Microsoft | Usuario | Cada participante |
 | Google Colab | Gratuita | Cuenta de Google | Usuario | Cada participante |
-| IBM Cloud y watsonx.ai Studio | Plan Lite | IBMid con cuenta de IBM Cloud activa | Crear proyectos y almacenamiento | Cada participante, **antes del taller** |
+| CODAP | Gratuita | Cuenta de Google o Microsoft | Usuario | Cada participante |
 | Teachable Machine, TensorFlow Playground, Vision AI demo | Acceso público | Sin cuenta | Uso público | No aplica |
 
-El registro en IBM Cloud puede requerir verificación de identidad y tardar; por eso debe completarse antes del taller. No registrar contraseñas en el repositorio ni en los entregables.
 
 # Instalación y Configuración
 
@@ -91,9 +89,9 @@ El registro en IBM Cloud puede requerir verificación de identidad y tardar; por
 ### ChatGPT o Copilot
 
 1. Iniciar sesión en [chatgpt.com](https://chatgpt.com/) o [copilot.microsoft.com](https://copilot.microsoft.com/).
-2. Adjuntar la imagen `Capitulo03/recursos/Remision_Escaneada.png` y preguntar *"¿Qué folio tiene este documento?"*.
+2. Adjuntar la imagen `Capitulo03/recursos/Acta_Recepcion.png` y preguntar *"¿Qué folio tiene este documento?"*.
 
-**Resultado esperado:** la respuesta indica REM-2026-08814.
+**Resultado esperado:** la respuesta indica el folio.
 
 ### Google Colab
 
@@ -101,14 +99,6 @@ El registro en IBM Cloud puede requerir verificación de identidad y tardar; por
 2. Crear un notebook nuevo y seleccionar **Conectar**.
 
 **Resultado esperado:** el entorno se conecta.
-
-### IBM Cloud y watsonx.ai Studio (plan Lite)
-
-1. Crear una cuenta en [cloud.ibm.com](https://cloud.ibm.com/) con su correo y completar la verificación que solicite IBM.
-2. Abrir [el servicio en el catálogo](https://cloud.ibm.com/catalog/services/data-science-experience), seleccionar el plan **Lite** y crear el servicio en la región indicada por el instructor.
-3. Abrir [dataplatform.cloud.ibm.com](https://dataplatform.cloud.ibm.com/) y confirmar que aparece la página de inicio de watsonx.
-
-**Resultado esperado:** acceso a la página de inicio y opción **Create a project** disponible.
 
 ### Carpetas de trabajo
 
@@ -150,20 +140,12 @@ No hay recursos compartidos entre participantes. Cada uno crea su propio proyect
 | Práctica | Preparación |
 |---|---|
 | 1 y 2 | Sesión iniciada en ChatGPT o Copilot |
-| 3 | Foto propia sin personas ni datos, guardada en la carpeta de trabajo |
-| 4 | `Dataset_Figuras.zip` descomprimido |
+| 3 | Contenido de carpeta de recursos, guardados en la carpeta de trabajo |
+| 4 | `Dataset_Suministros.zip` descomprimido |
 | 5 | Ninguna |
 | 6 | Sesión iniciada en Google |
-| 7 | Cuenta de IBM Cloud con watsonx.ai Studio Lite habilitado |
+| 7 | Ninguna |
 
-## Correcciones de coherencia
-
-| Inconsistencia o dependencia omitida | Configuración unificada | Ajuste necesario en las copias de trabajo |
-|---|---|---|
-| El temario no define perfil de audiencia ni prerrequisitos | Se derivaron de la descripción, los objetivos y las herramientas (usuarios sin experiencia en programación) | Confirmar con el cliente |
-| El temario menciona "casos prácticos", "guía de prompts" e "imágenes proporcionadas por NETEC" sin incluirlos | Se crearon en `Capitulo01`, `Capitulo02` y `Capitulo03/recursos` | Ninguno |
-| Teachable Machine requiere ejemplos para entrenar | Dataset de figuras con un conjunto sesgado para mostrar el efecto de los datos | Ninguno |
-| El temario cita "IBM Watson Studio"; el servicio actual se llama IBM watsonx.ai Studio | Se usa el nombre actual con referencia al anterior | Ninguno |
 
 # Servicios Externos Requeridos
 
@@ -174,20 +156,20 @@ No hay recursos compartidos entre participantes. Cada uno crea su propio proyect
 | Teachable Machine | [teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com/) | Práctica 4 | Público |
 | TensorFlow Playground | [playground.tensorflow.org](https://playground.tensorflow.org/) | Práctica 5 | Público |
 | Google Colab y GitHub | [colab.research.google.com](https://colab.research.google.com/), [github.com](https://github.com/) | Práctica 6 y materiales | Cuenta de Google |
-| IBM watsonx | [dataplatform.cloud.ibm.com](https://dataplatform.cloud.ibm.com/) | Práctica 7 | IBMid |
+| CODAP | [CODAP](https://codap.concord.org/) | Práctica 7 | Público |
 
 ## Configuración de red
 
 | Origen | Destino | Protocolo y puerto | Sentido | Condición |
 |---|---|---|---|---|
-| Equipo del participante | chatgpt.com, copilot.microsoft.com, cloud.google.com, teachablemachine.withgoogle.com, playground.tensorflow.org, colab.research.google.com, github.com, storage.openvinotoolkit.org, cloud.ibm.com, dataplatform.cloud.ibm.com | HTTPS 443 | Saliente | Dominios permitidos en el proxy o firewall |
+| Equipo del participante | chatgpt.com, copilot.microsoft.com, cloud.google.com, teachablemachine.withgoogle.com, playground.tensorflow.org, colab.research.google.com, github.com, storage.openvinotoolkit.org, codap.concord.org | HTTPS 443 | Saliente | Dominios permitidos en el proxy o firewall |
 
 # Creación de Entornos / Máquinas Virtuales / Emuladores
 
 | Elemento | Tipo o plataforma | Imagen y versión | Recursos asignados | Red o región | Persistencia |
 |---|---|---|---|---|---|
 | Entorno de Colab | Entorno cloud administrado por Google | Imagen vigente de Colab | Los del nivel gratuito | Internet | Temporal; se borra al desconectar |
-| Proyecto de watsonx.ai Studio | Entorno cloud de IBM | Plan Lite | Los del plan Lite | Región indicada por el instructor | Persistente hasta eliminar el proyecto |
+
 
 <a id="validacion-entorno"></a>
 
@@ -200,9 +182,9 @@ No hay recursos compartidos entre participantes. Cada uno crea su propio proyect
 | V-03 | Teachable Machine | Crear un **Image Project** y cargar 5 imágenes del dataset | Las imágenes aparecen en la clase | Captura |
 | V-04 | TensorFlow Playground | Abrir el sitio y seleccionar **Play** | La animación del entrenamiento avanza | Captura |
 | V-05 | Colab y OpenVINO | Abrir el notebook de la Práctica 6 y ejecutar la primera celda | La celda termina sin error | Captura |
-| V-06 | IBM watsonx.ai Studio | Iniciar sesión en dataplatform.cloud.ibm.com | Opción **Create a project** disponible | Captura |
+| V-06 | CODAP | Ingresar a codap.concord.org | Opción **Abrir documento o Examinar ejemplos** disponible | Captura |
 
-**Criterio de entorno listo:** V-01 a V-06 aprobadas. V-06 debe aprobarse antes del día del taller.
+**Criterio de entorno listo:** V-01 a V-06 aprobadas. 
 
 # Comandos de Verificación
 
@@ -214,7 +196,7 @@ No aplica. El taller se valida en interfaces web con los procedimientos V-01 a V
 |---|---|---|---|---|
 | Límite de mensajes o de imágenes en ChatGPT o Copilot | Restricción de la versión gratuita | Mensaje del servicio | Cambiar a la otra herramienta | V-02 |
 | Colab no conecta | Límite de uso o red | Botón **Conectar** | Esperar o usar otra cuenta de Google | V-05 |
-| IBM Cloud no permite crear el servicio | Cuenta sin verificar o región sin plan Lite | Mensaje del catálogo | Completar la verificación o cambiar de región | V-06 |
+| CODAP no carga | Problemas de conexión o navegadores | Página de inicio de CODAP | Actualizar navegador o probar con otro | V-06 |
 | Teachable Machine se congela | Memoria o pestaña en segundo plano | Barra de progreso detenida | Cerrar pestañas y mantener visible la página | V-03 |
 
 # Checklist Final
@@ -222,13 +204,12 @@ No aplica. El taller se valida en interfaces web con los procedimientos V-01 a V
 - [ ] Laptop con navegador actualizado y conexión a Internet.
 - [ ] Cuenta de ChatGPT o Copilot activa.
 - [ ] Cuenta de Google para Colab.
-- [ ] Cuenta de IBM Cloud con watsonx.ai Studio Lite habilitado.
 - [ ] Recursos descargados en `Documentos\Taller_IA_Moderna\` y dataset descomprimido.
 - [ ] Validaciones V-01 a V-06 aprobadas.
 
 # Resumen
 
-Para iniciar el taller, cada participante necesita una laptop con navegador y conexión a Internet, un editor de documentos y hojas de cálculo, una cuenta de ChatGPT o Copilot, una cuenta de Google y una cuenta de IBM Cloud con el plan Lite de watsonx.ai Studio habilitado previamente. No se instala software localmente.
+Para iniciar el taller, cada participante necesita una laptop con navegador y conexión a Internet, un editor de documentos y hojas de cálculo, una cuenta de ChatGPT o Copilot, y una cuenta de Google . No se instala software localmente.
 
 <a id="registro-validacion"></a>
 
@@ -246,6 +227,6 @@ Para iniciar el taller, cada participante necesita una laptop con navegador y co
 | Teachable Machine | https://teachablemachine.withgoogle.com/ | 2026-11-10 |
 | TensorFlow Playground | https://playground.tensorflow.org/ | 2026-11-10 |
 | OpenVINO Notebooks | https://github.com/openvinotoolkit/openvino_notebooks | 2026-11-10 |
-| IBM watsonx.ai Studio (catálogo) | https://cloud.ibm.com/catalog/services/data-science-experience | 2026-11-10 |
+| CODAP | https://codap.concord.org/ | 2026-11-10 |
 
 [Inicio](README.md)

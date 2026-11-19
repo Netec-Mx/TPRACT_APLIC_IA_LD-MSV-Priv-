@@ -1,158 +1,114 @@
 # Práctica 6. OpenVINO Toolkit
 
-**Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 6 de 7**
+## Misión Inferencia en Acción: de una imagen a una decisión verificable
 
-⏱️ **Duración:** 15 min · 🛠️ **Herramienta:** OpenVINO Notebooks en Google Colab · 📄 **Entregable:** `Registro_OpenVINO_[INICIALES].docx`
+**Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 6 de 7**  
+**Duración:** 15 minutos  
+**Herramienta:** [OpenVINO Notebooks — Hello Image Classification en Google Colab](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/hello-world/hello-world.ipynb)  
+**Modalidad:** individual, guiada, sin programación previa  
+**Entregable:** `Dictamen_Inferencia_[INICIALES].md`
 
-## Descripción
+> **Contexto:** Una entidad ficticia del Sector Defensa de Perú evalúa si una solución de clasificación visual puede apoyar el inventario de suministros para actividades humanitarias. Antes de recomendarla, debe comprobar que el modelo se ejecuta, qué predice y cuáles son sus límites. No se utilizarán datos, imágenes ni sistemas institucionales reales.
 
-Entrenar un modelo es solo una parte; después hay que ejecutarlo (inferencia) de forma rápida en el equipo donde se usará. OpenVINO es un kit de herramientas de Intel que optimiza y ejecuta modelos de IA en CPU, GPU y otros dispositivos. En esta práctica el participante ejecutará en Google Colab, sin instalar nada, el notebook oficial **Hello Image Classification**: un modelo de visión (MobileNetV3) clasificará una imagen y el participante interpretará el resultado.
+## Objetivo
 
-## Objetivos de aprendizaje
+Ejecutar un notebook oficial de OpenVINO en Google Colab, identificar las etapas de inferencia (preparación, modelo, dispositivo, imagen y predicción), interpretar una clasificación visual y emitir una recomendación fundamentada sobre su utilidad y limitaciones.
 
-Al finalizar la práctica, el participante será capaz de:
+## Lo que aprenderás
 
-- Explicar qué es OpenVINO y qué significa ejecutar inferencia con un modelo optimizado.
-- Ejecutar un notebook guiado en Google Colab y reconocer sus etapas: instalación, carga del modelo, carga de la imagen e inferencia.
-- Interpretar el resultado de la clasificación y relacionarlo con casos de uso reales.
+- Diferenciar **entrenamiento** de **inferencia**: aquí se ejecuta un modelo ya entrenado.
+- Reconocer que OpenVINO permite preparar y ejecutar modelos sobre hardware compatible, y que la ejecución en Colab no demuestra por sí sola un despliegue local.
+- Interpretar una etiqueta predicha y, si el notebook la muestra, su puntuación; **una puntuación alta no garantiza que la etiqueta sea correcta**.
+- Identificar la diferencia entre **clasificar una imagen** y **contar objetos, detectar su ubicación o validar inventarios**.
 
-<img src="../images/p06-objetivo.svg" alt="Flujo de la Práctica 6: abrir Colab, ejecutar celdas, interpretar resultado y conclusión" width="720"/>
+## Recursos
 
-## Antes de empezar
+1. Cuenta de Google con acceso a Colab.
+2. Navegador e internet estable.
+3. [Notebook oficial Hello Image Classification](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/hello-world/hello-world.ipynb).
+4. `recursos/Dictamen_Inferencia.md` (plantilla editable).
+5. `recursos/Tarjeta_Desafio.md` (situación y preguntas de decisión).
 
-| Elemento | Valor |
-|---|---|
-| Dónde trabajar | [Notebook Hello Image Classification en Google Colab](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/hello-world/hello-world.ipynb) |
-| Cuenta requerida | Cuenta de Google |
-| Archivos de la práctica | [Registro_OpenVINO.docx](recursos/Registro_OpenVINO.docx) |
-| Carpeta de trabajo | `Documentos\Taller_IA_Moderna\Practica06\` |
-| Nombre del entregable | `Registro_OpenVINO_[INICIALES].docx` |
-
-> No se necesita saber programar: el notebook ya tiene el código. Solo se ejecutan las celdas en orden y se leen los resultados.
-
----
-
-## Tarea 1. Abrir el notebook en Colab (3 min)
-
-**Objetivo:** Tener el notebook abierto y conectado a un entorno de ejecución.
-
-**Por qué:** Colab ejecuta el código en un servidor de Google; por eso no hay que instalar nada.
-
-**Paso 1.** Guardar el registro como `Registro_OpenVINO_[INICIALES].docx`.
-
-**Paso 2.** Abrir el [notebook en Google Colab](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/hello-world/hello-world.ipynb) e iniciar sesión con la cuenta de Google.
-
-**Paso 3.** Seleccionar **Conectar** (arriba a la derecha).
-
-- **Qué verás:** indicadores de RAM y disco cuando el entorno esté conectado.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ El notebook abierto y conectado.
+**Importante:** el notebook enlazado pertenece a un repositorio externo y puede cambiar. El instructor debe abrirlo y ejecutar todas las celdas antes de la sesión, confirmar que funciona en Colab y disponer de una ejecución de demostración como respaldo. No se garantiza que todas las cuentas puedan acceder o que la instalación concluya dentro de los tiempos indicados.
 
 ---
 
-## Tarea 2. Ejecutar las celdas (6 min)
+## La misión
 
-**Objetivo:** Ejecutar el notebook completo sin errores.
+Un equipo de abastecimiento necesita determinar si una herramienta que reconoce imágenes podría ayudar a clasificar fotografías de suministros. Tu tarea **no** es construir un sistema de inventario: es ejecutar una inferencia real, comprobar qué resultado devuelve y decidir si ese resultado bastaría para una operación de inventario.
 
-**Por qué:** Cada celda corresponde a una etapa de la inferencia.
+### Desafío 1. Activar el motor de IA (3 minutos)
 
-**Paso 1.** Seleccionar **Entorno de ejecución > Ejecutar todas** (**Runtime > Run all**).
+1. Abre el enlace del notebook oficial. Verifica que el dominio sea `colab.research.google.com` y que el notebook corresponda al repositorio `openvinotoolkit/openvino_notebooks`.
+2. Inicia sesión con tu cuenta de Google si es necesario.
+3. Da clic en **Archivo > Guardar una copia en Drive** (*File > Save a copy in Drive*). Esto crea tu propia copia editable del notebook.
+4. Haz clic en **Conectar**. Si Colab solicita autorización para ejecutar un notebook externo, verifica primero su procedencia; sigue las indicaciones del instructor si existe alguna restricción.
+5. Abre `recursos/Dictamen_Inferencia.md` en un editor de texto y prepara tu registro.
 
-- **Si aparece "Advertencia: Este notebook no lo creó Google":** seleccionar **Ejecutar de todos modos**; es el repositorio oficial de OpenVINO.
+**Resultado esperado:** notebook abierto y entorno de ejecución conectado.
 
-**Paso 2.** Esperar a que termine la celda de instalación (`%pip install ... openvino ...`); tarda de 1 a 2 minutos. Anotar en la plantilla la versión de OpenVINO que muestra la salida.
+### Desafío 2. Ejecutar la inferencia (7 minutos)
 
-**Paso 3.** Bajar por el notebook y ubicar las etapas:
-   - **Download the Model and data samples:** descarga el modelo MobileNetV3 en formato OpenVINO (archivos `.xml` y `.bin`).
-   - **Select inference device:** dispositivo de inferencia (en Colab, `CPU` o `AUTO`).
-   - **Load the Model:** carga y compila el modelo.
-   - **Load an Image:** descarga y muestra la imagen de ejemplo.
-   - **Do Inference:** ejecuta el modelo y obtiene la clase con mayor probabilidad.
+1. Selecciona **Ejecutar todas** (*Run all*). 
+2. Espera a que terminen las instalaciones y descargas. No modifiques el código del notebook.
+3. Identifica visualmente, según los encabezados disponibles, estas etapas: **preparación del entorno**, **descarga/carga del modelo**, **selección del dispositivo**, **preparación de la imagen**, **inferencia** y **presentación del resultado**.
+4. Registra en tu dictamen:
+   - Modelo utilizado (según la salida real del notebook).
+   - Dispositivo de ejecución seleccionado o mostrado (por ejemplo, CPU, si es el caso).
+   - Imagen de ejemplo analizada.
+   - Etiqueta o clase predicha y puntuación, **solo si aparece**.
+5. Si alguna celda falla, copia el nombre de la etapa y una descripción breve del error; no inventes resultados.
 
-**Paso 4.** Anotar el dispositivo, el modelo y el tamaño de entrada (224 × 224).
+**Resultado esperado:** ejecución completada y predicción observada, o incidencia técnica registrada con precisión.
 
-**Al terminar esta tarea debes tener:**
+> **Plan de contingencia:** si la instalación o la descarga tarda más de lo previsto, el instructor mostrará una ejecución previa verificada del mismo notebook. El participante analizará esas salidas y marcará su registro como **demostración observada**, no como ejecución propia.
 
-- ✔ Todas las celdas ejecutadas con una marca verde.
+### Desafío 3. ¿Reconocer es lo mismo que verificar? (3 minutos)
 
----
+Lee `recursos/Tarjeta_Desafio.md` y responde:
 
-## Tarea 3. Interpretar el resultado (3 min)
+1. ¿Qué elemento identificó el modelo en la imagen de ejemplo? ¿Puedes comprobarlo visualmente?
+2. Si un almacén tiene 40 cajas en una fotografía, ¿el resultado de **clasificación de una imagen** permite afirmar que hay exactamente 40 cajas? Explica por qué.
+3. Para probar otra imagen, ir a https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/ , seleccionar una imagen diferente, copiar su URL y reemplazarla en la línea correspondiente en la celda "Load an image" del notebook. Ejecuta la celda y registra la nueva predicción. ¿Coincide con lo que ves en la imagen?
+4. ¿Qué otra capacidad o sistema haría falta para localizar y contar objetos, además de validar los registros de un inventario?
 
-**Objetivo:** Registrar la clase predicha y evaluar si es correcta.
+**Resultado esperado:** una distinción correcta entre clasificación de imágenes y detección/conteo de objetos, con revisión humana.
 
-**Por qué:** Un modelo de clasificación solo conoce las clases con las que se entrenó (1,000 clases de ImageNet).
+### Desafío 4. Emitir el dictamen (2 minutos)
 
-**Paso 1.** Ubicar la salida de la última celda: el nombre de la clase predicha para la imagen de ejemplo.
+Completa la conclusión de tu archivo con este formato:
 
-**Paso 2.** Comparar con la imagen mostrada en **Load an Image** y anotar si coincide.
+> **Dictamen:** El notebook [se ejecutó / fue observado en demostración / presentó una incidencia]. El modelo predijo **[etiqueta]** para **[imagen]**. Esta prueba demuestra **[capacidad observada]**, pero no demuestra **[limitación]**. Para apoyar un inventario de suministros sería necesario **[requisito adicional]**.
 
-**Paso 3 (opcional).** Para probar otra imagen, ir a **Load an Image**, sustituir en la línea de descarga la URL de la imagen por la URL pública de una foto de un perro, un gato o un objeto común, cambiar `coco.jpg` por otro nombre de archivo y ejecutar desde esa celda hasta el final. Anotar la nueva predicción.
+Guárdalo como `Dictamen_Inferencia_[INICIALES].md`.
 
-**Al terminar esta tarea debes tener:**
-
-- ✔ La clase predicha registrada y evaluada.
-
----
-
-## Tarea 4. Conclusión (3 min)
-
-**Objetivo:** Completar la sección **3. Interpretación** y guardar el entregable.
-
-**Por qué:** El valor de OpenVINO está en ejecutar modelos de forma eficiente cerca de donde se generan los datos (en el borde).
-
-**Paso 1.** Responder qué hace OpenVINO en el flujo (optimiza y ejecuta el modelo en el hardware disponible) y un caso de uso en su trabajo (por ejemplo, inspección visual en una línea de producción con una cámara y un equipo local).
-
-**Paso 2.** Guardar el documento.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ La plantilla completa y guardada.
+**Resultado esperado:** un dictamen de 3–5 líneas que diferencia observaciones, limitaciones y necesidades de una posible aplicación.
 
 ---
 
-## Validación y pruebas
+## Criterios de logro
 
-| Caso | Acción | Resultado esperado |
-|---|---|---|
-| Instalación | Revisar la salida de la celda de `pip install` | Instalación sin errores |
-| Inferencia | Revisar la última celda | Una clase de ImageNet que corresponde a la imagen de ejemplo |
-| Caso adversarial | Pregunta del instructor: *"Si le doy una radiografía, ¿la clasificará correctamente?"* | No: el modelo solo conoce las clases de ImageNet; para otro dominio se necesita otro modelo |
-
-## Entregables
-
-| Entregable | Contenido | Criterio de verificación |
-|---|---|---|
-| `Registro_OpenVINO_[INICIALES].docx` | Ejecución, resultado e interpretación | Versión de OpenVINO, dispositivo y modelo; clase predicha y evaluación; caso de uso propio |
-
-## Resultado esperado
-
-- El participante ejecuta una inferencia guiada con OpenVINO sin instalación local y explica su resultado y su utilidad.
+- [ ] Identifiqué qué modelo y dispositivo se utilizaron, según las salidas disponibles.
+- [ ] Reconocí que se ejecutó **inferencia** con un modelo ya entrenado.
+- [ ] Registré la clase predicha sin inventar resultados ni puntuaciones.
+- [ ] Expliqué por qué clasificar una imagen no equivale a detectar y contar objetos.
+- [ ] Emití una recomendación breve, con límites y verificación humana.
 
 ## Solución de problemas
 
-**Error en la celda de instalación**
-- *Síntoma:* mensajes en rojo durante `pip install`.
-- *Causa:* conflicto temporal de paquetes en el entorno de Colab.
-- *Solución:* seleccionar **Entorno de ejecución > Reiniciar sesión** y volver a ejecutar todas las celdas.
+| Situación | Qué hacer |
+|---|---|
+| No se abre el notebook | Confirmar acceso a Google Colab; avisar al instructor. |
+| No conecta el entorno | Reintentar una vez; si persiste, utilizar la demostración del instructor. |
+| Instalación o descarga lenta | Esperar el tiempo acordado; pasar a la demostración sin alterar celdas. |
+| Error en una celda | Registrar la etapa y el mensaje; no afirmar que el notebook terminó correctamente. |
+| El notebook muestra una etiqueta inesperada | Contrastar con la imagen, considerar error de clasificación y documentarlo. |
+| No aparece puntuación de confianza | Registrar “no mostrada”; no estimarla. |
+| Cambiaron los nombres de las secciones | Identificar las etapas por su función, con apoyo del instructor. |
 
-**Colab no se conecta**
-- *Síntoma:* el botón **Conectar** no cambia.
-- *Causa:* límite de uso de la cuenta gratuita o red bloqueada.
-- *Solución:* esperar unos minutos, usar otra cuenta de Google o seguir la ejecución que proyecte el instructor.
+## Alcance y uso responsable
 
-## Limpieza
-
-- Seleccionar **Entorno de ejecución > Desconectar y borrar entorno de ejecución**.
-- No es necesario guardar una copia del notebook en Drive.
-
-## Recursos opcionales
-
-- [OpenVINO Notebooks en GitHub](https://github.com/openvinotoolkit/openvino_notebooks)
-
-<sub>Complejidad: Fácil · Nivel de Bloom: Comprender</sub>
+Este laboratorio es una **demostración**, no una solución lista para operar en almacenes. No se deben cargar fotografías institucionales, información sensible ni imágenes de personas sin autorización. No se tomarán decisiones operativas reales con sus resultados.
 
 ---
 

@@ -1,159 +1,120 @@
-# Práctica 7. IBM Watson Studio
+# Práctica 7. Exploración y visualización de datos sin programación
 
 **Taller práctico: Aplicación de la Inteligencia Artificial Moderna · Práctica 7 de 7**
 
-⏱️ **Duración:** 15 min · 🛠️ **Herramienta:** IBM watsonx.ai Studio (plan Lite) · 📄 **Entregable:** `Registro_watsonx_[INICIALES].docx`
+⏱️ **Duración:** 15 min · 🛠️ **Herramienta:** CODAP (Free) · 📄 **Entregable:** `DICTAMEN DE EXPLORACIÓN.txt`
 
-## Descripción
+## Objetivo
 
-Las plataformas empresariales de IA organizan el trabajo en proyectos donde se reúnen datos, notebooks y modelos. En esta práctica el participante accederá a IBM watsonx.ai Studio (antes Watson Studio), creará un proyecto básico, agregará un archivo de incidencias de operación y lo explorará sin programar, con la vista previa, el perfil de datos y las visualizaciones. Así integrará el uso de una plataforma de IA en el flujo de análisis para la toma de decisiones.
+Abrir y explorar un conjunto de datos sin programación, identificar atributos útiles, interpretar una visualización y elaborar una recomendación prudente basada en evidencia. Reconocer qué datos adicionales serían necesarios para priorizar inspecciones y qué pregunta podría abordarse posteriormente con aprendizaje automático.
 
-## Objetivos de aprendizaje
+## Contexto de la misión
 
-Al finalizar la práctica, el participante será capaz de:
+Un equipo ficticio de planificación de inspecciones está aprendiendo a evaluar inventarios de infraestructura. Para practicar sin utilizar información institucional, trabajará con una base pública de **157 montañas rusas**, agrupadas en **32 estados** de Estados Unidos, tal como aparece en el documento de ejemplo mostrado en CODAP.
 
-- Navegar la interfaz de IBM watsonx.ai Studio y crear un proyecto.
-- Agregar un conjunto de datos a un proyecto como activo de datos.
-- Explorar los datos con la vista previa, el perfil y las visualizaciones para responder preguntas de negocio.
+El equipo recibe esta afirmación:
 
-<img src="../images/p07-objetivo.svg" alt="Flujo de la Práctica 7: crear proyecto, agregar datos, explorar datos y conclusión" width="720"/>
+> «El estado que tenga más instalaciones registradas debe ser el primero en recibir una inspección, porque seguramente presenta mayor riesgo».
 
-## Antes de empezar
+**Tu misión:** examinar los datos, comprobar qué información sí muestran y explicar por qué la afirmación no está suficientemente sustentada.
 
-| Elemento | Valor |
+## Lo que observarás en el documento
+
+El ejemplo muestra una estructura de datos con dos niveles: **States** y **Roller Coasters**. Entre los atributos visibles están `State`, `Coaster`, `Park`, `Top_Speed` (mph), `Max_Height` (ft), `Drop` (ft), `Length` (ft), `Duration` (sec), `Type`, `Design`, `Year Opened`, `Age Group`, `Inversions`, `Num of Inversions` y `City`.
+
+Los nombres pueden aparecer truncados en la tabla. Utiliza el encabezado completo o el menú de atributos del gráfico para reconocerlos. **No es necesario convertir unidades ni usar todas las columnas.**
+
+---
+
+## Desafío 1. Abre el inventario (3 minutos)
+
+1. Ingresa a <https://codap.concord.org/>.
+2. En la ventana **¿Qué quieres hacer?**, selecciona **Abrir documento o examinar ejemplos**.
+3. Haz clic en **Roller Coasters**.
+4. Localiza la tabla **Sample of US Roller Coasters Across Years**.
+5. Reconoce las dos secciones de la tabla: **States** (estados) y **Roller Coasters** (instalaciones registradas).
+6. Identifica tres atributos que describan una instalación, por ejemplo `Top_Speed`, `Max_Height` y `Year Opened`.
+
+**Pregunta rápida:** ¿qué información describe la instalación y qué información indica dónde se encuentra?
+
+**Resultado esperado:** distinguir la ubicación (`State`, `City`) de las características técnicas de cada registro.
+
+## Desafío 2. Investiga el inventario con un gráfico (5 minutos)
+
+1. Haz clic en **Gráfico** en la barra superior de CODAP o selecciona alguno en la parte inferior al dataset.
+2. Si el gráfico muestra `State` en el eje horizontal, **consérvalo**: será nuestra variable de agrupación geográfica.
+3. Haz clic en el nombre o la flecha del **eje vertical** y elige **Roller Coasters → Top_Speed** (o `Max_Height` si resulta más fácil de visualizar).
+4. Observa los puntos de distintos estados. **Cada punto representa un registro, no el riesgo del estado ni necesariamente un promedio.**
+5. Identifica un estado con varios registros visibles y otro con menos registros visibles. Puedes desplazarte por el gráfico si es necesario.
+6. Selecciona un punto del gráfico y localiza el registro correspondiente en la tabla, si la interfaz lo permite.
+
+**Responde:**
+
+- ¿Qué estado elegiste para observar con más detalle?
+- ¿Qué característica técnica revisaste (`Top_Speed` o `Max_Height`)?
+- ¿El gráfico muestra cantidad de instalaciones, una característica de cada instalación o ambas cosas? Explica con cuidado qué representa cada punto.
+
+**Resultado esperado:** una visualización explorada y una observación respaldada por datos visibles.
+
+> **Si no logras colocar una variable en el eje vertical:** conserva el gráfico por `State`, examina la tabla y compara registros de dos estados. La misión no depende de una configuración exacta del gráfico.
+
+## Desafío 3. Desmonta una conclusión apresurada (4 minutos)
+
+Vuelve a leer la afirmación inicial:
+
+> «El estado que tenga más instalaciones registradas debe ser el primero en recibir una inspección, porque seguramente presenta mayor riesgo».
+
+Decide si estás de acuerdo, parcialmente de acuerdo o en desacuerdo. Justifica tu postura respondiendo:
+
+1. ¿Tener más registros demuestra mayor riesgo? **No: una cantidad no es una medición de riesgo.**
+2. ¿Qué información adicional necesitarías para decidir una prioridad de inspección? Elige al menos dos: historial de incidentes, fecha de última inspección, estado de conservación, intensidad de uso, mantenimiento, resultados de inspecciones anteriores.
+3. ¿Cómo utilizarías la tabla y el gráfico para preparar una revisión preliminar sin afirmar que una instalación es insegura?
+
+**Resultado esperado:** identificar la diferencia entre un inventario descriptivo y una evaluación de riesgo.
+
+## Desafío 4. Emite tu recomendación (3 minutos)
+
+Completa esta ficha breve en el chat de la sesión o en un documento de texto:
+
+```text
+DICTAMEN DE EXPLORACIÓN
+
+1. Estado o registros examinados:
+2. Atributo técnico analizado:
+3. Observación respaldada por el gráfico o la tabla:
+4. ¿La cantidad de registros demuestra riesgo? ¿Por qué?:
+5. Dos datos adicionales que solicitaría antes de priorizar inspecciones:
+6. Una pregunta que podría investigarse con aprendizaje automático:
+```
+
+**Ejemplo de pregunta futura de ML:** «Si tuviéramos historiales de mantenimiento, uso e incidentes, ¿podríamos estimar qué instalaciones necesitarán revisión antes?». Esto sería una **propuesta de aplicación**, no un modelo entrenado durante la práctica.
+
+---
+
+## Entregable
+
+Una **ficha de dictamen** de seis respuestas breves. No se necesita Excel, CSV ni cuenta de usuario.
+
+## Criterios de validación
+
+| Criterio | Evidencia esperada |
 |---|---|
-| Dónde trabajar | [IBM watsonx (dataplatform.cloud.ibm.com)](https://dataplatform.cloud.ibm.com/) con la cuenta de IBM Cloud |
-| Requisito previo | Cuenta de IBM Cloud con el servicio watsonx.ai Studio (plan Lite) habilitado antes del taller (ver [Setup_Guide.md](../Setup_Guide.md)) |
-| Archivos de la práctica | [Incidencias_Operacion.csv](recursos/Incidencias_Operacion.csv), [Registro_watsonx.docx](recursos/Registro_watsonx.docx) |
-| Carpeta de trabajo | `Documentos\Taller_IA_Moderna\Practica07\` |
-| Nombre del entregable | `Registro_watsonx_[INICIALES].docx` |
-
-> El archivo tiene 120 incidencias ficticias (agosto a octubre de 2026) con área, tipo, prioridad, horas para resolver, costo y estado.
-
----
-
-## Tarea 1. Crear el proyecto (5 min)
-
-**Objetivo:** Tener un proyecto vacío con almacenamiento asociado.
-
-**Por qué:** El proyecto es el espacio donde se guardan los datos y los recursos de análisis.
-
-**Paso 1.** Guardar el registro como `Registro_watsonx_[INICIALES].docx` y descargar el CSV.
-
-**Paso 2.** Abrir [dataplatform.cloud.ibm.com](https://dataplatform.cloud.ibm.com/) e iniciar sesión con su IBMid. Si se solicita, elegir la región indicada por el instructor.
-
-- **Qué verás:** la página de inicio de watsonx con accesos a proyectos y servicios.
-
-**Paso 3.** Seleccionar **Create a project** (o **Projects > New project**) y elegir **Create an empty project**.
-
-**Paso 4.** Escribir el nombre `Taller_IA_[INICIALES]`. En **Storage**, seleccionar la instancia de **Cloud Object Storage** existente (o **Add** para crear una Lite) y seleccionar **Create**.
-
-- **Si no ocurre así:** si no hay almacenamiento disponible, avisar al instructor; la cuenta debe tener Cloud Object Storage Lite.
-
-**Paso 5.** Anotar en la plantilla el nombre del proyecto, el almacenamiento y la región.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ El proyecto creado y abierto.
-
----
-
-## Tarea 2. Agregar los datos (4 min)
-
-**Objetivo:** Tener `Incidencias_Operacion.csv` como activo de datos del proyecto.
-
-**Por qué:** Los datos deben estar dentro del proyecto para explorarlos y, después, construir modelos.
-
-**Paso 1.** En el proyecto, abrir la pestaña **Assets** y seleccionar el icono de carga de datos (**Upload asset to project** o el panel **Data**, arriba a la derecha).
-
-**Paso 2.** Arrastrar `Incidencias_Operacion.csv` al panel o seleccionar **Drop data files here or browse for files to upload**.
-
-- **Qué verás:** el archivo en la lista de activos cuando termine la carga.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ El activo de datos en la pestaña **Assets**.
-
----
-
-## Tarea 3. Explorar los datos (4 min)
-
-**Objetivo:** Completar la sección **2. Datos** de la plantilla.
-
-**Por qué:** Explorar los datos es el primer paso para decidir qué preguntas pueden responderse con IA.
-
-**Paso 1.** Seleccionar el activo `Incidencias_Operacion.csv`.
-
-- **Qué verás:** la pestaña **Preview** con las columnas y filas del archivo.
-
-**Paso 2.** Anotar el número de filas (120) y columnas (8).
-
-**Paso 3.** Abrir la pestaña **Profile** y seleccionar **Create profile** si se solicita. Revisar la distribución de valores de las columnas `Area` y `Tipo`.
-
-**Paso 4.** Abrir la pestaña **Visualization**, elegir un gráfico de barras con la columna `Area` y anotar el área con más incidencias. Repetir con `Tipo`.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ La sección 2 completa con datos observados en la plataforma.
-
----
-
-## Tarea 4. Conclusión (2 min)
-
-**Objetivo:** Completar la sección **3. Conclusión** y guardar el entregable.
-
-**Por qué:** Conectar la exploración con una decisión de negocio cierra el ciclo de análisis.
-
-**Paso 1.** Escribir una pregunta de negocio que podría responder un modelo con estos datos (por ejemplo, estimar las horas de resolución según área, tipo y prioridad) y qué herramienta de watsonx.ai Studio usaría después (por ejemplo, AutoAI para entrenar un modelo sin programar).
-
-**Paso 2.** Guardar el documento.
-
-**Al terminar esta tarea debes tener:**
-
-- ✔ La plantilla completa y guardada.
-
----
-
-## Validación y pruebas
-
-| Caso | Acción | Resultado esperado |
-|---|---|---|
-| Proyecto | Revisar **Projects** | El proyecto `Taller_IA_[INICIALES]` aparece en la lista |
-| Datos | Revisar **Preview** | 120 filas y 8 columnas |
-| Visualización | Gráfico de barras por `Area` y por `Tipo` | Almacén es el área con más incidencias (27); "Falta de material" es el tipo más frecuente (35) |
-| Caso adversarial | Pregunta del instructor: *"¿Podemos subir la base real de incidencias de la empresa a este proyecto?"* | Solo con autorización y en una cuenta institucional con las políticas de datos aprobadas; en el taller se usan datos ficticios |
-
-## Entregables
-
-| Entregable | Contenido | Criterio de verificación |
-|---|---|---|
-| `Registro_watsonx_[INICIALES].docx` | Proyecto, datos y conclusión | Nombre del proyecto y almacenamiento; filas, columnas, área y tipo más frecuentes; pregunta de negocio y siguiente herramienta |
-
-## Resultado esperado
-
-- El participante crea un proyecto en IBM watsonx.ai Studio, incorpora datos y los explora sin programar para orientar decisiones.
+| Accede al entorno | Abre `Roller Coasters` desde los documentos de ejemplo |
+| Explora información | Reconoce `States`, `Roller Coasters` y al menos un atributo técnico |
+| Interpreta el gráfico | Describe lo que representan los puntos sin confundirlos con riesgo |
+| Evalúa una afirmación | Rechaza inferir riesgo únicamente por cantidad de registros |
+| Propone un uso de ML | Formula una pregunta predictiva y menciona datos que harían falta |
 
 ## Solución de problemas
 
-**No se puede crear el proyecto por falta de almacenamiento**
-- *Síntoma:* el botón **Create** está deshabilitado.
-- *Causa:* no hay una instancia de Cloud Object Storage asociada.
-- *Solución:* seleccionar **Add** en **Storage** y crear la instancia Lite, o usar la cuenta preparada por el instructor.
+- **No aparece la ventana Open:** utiliza el menú **File** para abrir un documento de ejemplo.
+- **No encuentro Roller Coasters:** confirma que seleccionaste **Documentos de ejemplo** y no **Local File** ni **Google Drive**.
+- **El gráfico solo muestra `State`:** es válido como punto de partida. Selecciona el eje vertical y busca un atributo dentro de **Roller Coasters**. Si no funciona, utiliza la tabla como apoyo.
+- **No puedo guardar el proyecto:** la ficha de dictamen es suficiente como entregable.
+- **La interfaz aparece en inglés:** puedes mantener los nombres de los atributos en inglés; las respuestas y el dictamen se redactan en español.
 
-**El servicio pide una tarjeta de crédito o un plan de pago**
-- *Síntoma:* el registro no permite continuar.
-- *Causa:* las cuentas nuevas de IBM Cloud pueden requerir verificación.
-- *Solución:* completar la cuenta antes del taller según la [Setup_Guide.md](../Setup_Guide.md) o trabajar con la demostración del instructor.
 
-## Limpieza
-
-- Opcional: eliminar el proyecto desde **Projects > ... > Delete** para liberar el almacenamiento del plan Lite.
-
-## Recursos opcionales
-
-- [IBM watsonx.ai Studio en el catálogo de IBM Cloud](https://cloud.ibm.com/catalog/services/data-science-experience)
-
-<sub>Complejidad: Fácil · Nivel de Bloom: Aplicar</sub>
+ CODAP permite explorar datos sin programación y no se entrena ningún modelo en este laboratorio. 
 
 ---
 
